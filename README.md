@@ -3,7 +3,7 @@
 Welcome to the repository for my personal portfolio website! This site serves as a digital hub to showcase my software engineering journey, technical skills, academic milestones, and recent full-stack and AI projects.
 
 ## 🚀 Live Demo
-You can view the live website here: [**(https://muhammadhamzazia.github.io/PORTFOLIO/)**]([https://your-username.github.io/your-repo-name/])
+You can view the live website here: https://muhammadhamzazia.github.io/PORTFOLIO/
 
 ## 🛠️ Tech Stack & Features
 - **Frontend:** HTML5, CSS3, JavaScript (or specify frameworks used)
