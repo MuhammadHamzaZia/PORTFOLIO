@@ -1,0 +1,653 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy & Security Policy — Muhammad Hamza Zia</title>
+    <meta name="description" content="Privacy and Security Policy for Muhammad Hamza Zia's Portfolio." />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        :root {
+            --bg: #05050f;
+            --primary: #8ff5ff;
+            --secondary: #ac89ff;
+            --tertiary: #e9ffb9;
+            --text: #ffffff;
+            --dim: #f8fafc;
+            --sans: 'Space Grotesk', system-ui, sans-serif;
+            --headline: 'Plus Jakarta Sans', sans-serif;
+            --card-bg: rgba(255,255,255,0.05);
+            --card-border: rgba(255,255,255,0.25);
+            --accent-glow: rgba(143,245,255,0.25);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+            -webkit-font-smoothing: antialiased;
+        }
+
+            body::before {
+                content: '';
+                position: fixed;
+                inset: 0;
+                background: radial-gradient(ellipse 70% 60% at 15% 15%, rgba(143,245,255,0.06) 0%, transparent 60%), radial-gradient(ellipse 60% 70% at 85% 85%, rgba(172,137,255,0.05) 0%, transparent 60%);
+                pointer-events: none;
+                z-index: 0;
+            }
+
+        /* ── Nav — exact from main portfolio ── */
+        nav {
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 3rem);
+            max-width: 1680px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 0 0 14px 14px;
+            top: 0;
+        }
+
+        .logo {
+            font-family: var(--headline);
+            font-weight: 900;
+            font-size: clamp(0.7rem, 2vw, 0.95rem);
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            color: white;
+            text-decoration: none;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 60%;
+        }
+
+            .logo span {
+                color: var(--primary);
+            }
+
+        .nav-back {
+            font-family: var(--headline);
+            font-weight: 800;
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.23,1,0.32,1);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            flex-shrink: 0;
+            text-shadow: none;
+        }
+
+            .nav-back:hover {
+                color: var(--primary);
+                text-shadow: 0 0 10px var(--primary);
+            }
+
+            .nav-back::before {
+                content: '←';
+            }
+
+        /* ── Page wrapper ── */
+        .page-wrap {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: clamp(6rem, 12vw, 9rem) clamp(1.25rem, 5vw, 4rem) 0;
+        }
+
+        /* ── Hero ── */
+        .page-hero {
+            margin-bottom: clamp(3rem, 6vw, 5rem);
+            padding-bottom: clamp(2rem, 4vw, 3rem);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .label-tag {
+            display: inline-block;
+            font-family: var(--headline);
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--primary);
+            border: 1px solid rgba(143,245,255,0.25);
+            border-radius: 999px;
+            padding: 0.3rem 0.9rem;
+            margin-bottom: 1.5rem;
+            text-shadow: none;
+        }
+
+        .page-hero h1 {
+            font-family: var(--headline);
+            font-weight: 900;
+            font-size: clamp(2rem, 6vw, 3.75rem);
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            line-height: 1.05;
+            margin-bottom: 1rem;
+        }
+
+            .page-hero h1 span {
+                background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+        .page-hero .meta {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.3);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-family: var(--headline);
+            text-shadow: none;
+        }
+
+        /* ── Section ── */
+        .policy-section {
+            margin-bottom: clamp(2.5rem, 5vw, 4rem);
+        }
+
+        .section-tag {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .section-tag-num {
+            font-family: var(--headline);
+            font-weight: 900;
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            color: var(--primary);
+            opacity: 0.6;
+            text-shadow: none;
+        }
+
+        .section-tag-rule {
+            flex: 1;
+            height: 1px;
+            background: rgba(255,255,255,0.08);
+        }
+
+        h2 {
+            font-family: var(--headline);
+            font-weight: 900;
+            font-size: clamp(1.1rem, 3vw, 1.6rem);
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-family: var(--headline);
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.85);
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        p {
+            font-size: 0.95rem;
+            color: rgba(248,250,252,0.75);
+            margin-bottom: 0.875rem;
+        }
+
+            p:last-child {
+                margin-bottom: 0;
+            }
+
+        strong {
+            color: white;
+            font-weight: 700;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0.75rem 0 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+            ul li {
+                font-size: 0.95rem;
+                color: rgba(248,250,252,0.75);
+                padding-left: 1.25rem;
+                position: relative;
+            }
+
+                ul li::before {
+                    content: '▸';
+                    position: absolute;
+                    left: 0;
+                    color: var(--primary);
+                    font-size: 0.65rem;
+                    top: 0.35em;
+                }
+
+        /* ── Liquid cards — exact from main page ── */
+        .liquid-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.15);
+            backdrop-filter: blur(30px) saturate(2.5);
+            -webkit-backdrop-filter: blur(30px) saturate(2.5);
+            border-radius: 6px;
+            padding: clamp(1.25rem, 3vw, 2rem);
+            transition: all 0.5s cubic-bezier(0.23,1,0.32,1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+            margin: 1.25rem 0;
+        }
+
+            .liquid-card::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, var(--primary), transparent);
+                opacity: 0.3;
+            }
+
+            .liquid-card::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(circle, rgba(143,245,255,0.05) 0%, transparent 70%);
+                opacity: 0;
+                transition: opacity 0.4s;
+                pointer-events: none;
+            }
+
+            .liquid-card:hover {
+                border-color: var(--primary);
+                transform: translateY(-4px) scale(1.01);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(143,245,255,0.1);
+            }
+
+                .liquid-card:hover::before {
+                    opacity: 1;
+                }
+
+        .card-secondary::after {
+            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+        }
+
+        .card-icon {
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .liquid-card h3 {
+            margin-top: 0;
+        }
+
+        /* ── Contact CTA ── */
+        .contact-block {
+            background: linear-gradient(135deg, rgba(143,245,255,0.06), rgba(172,137,255,0.04));
+            border: 1px solid rgba(143,245,255,0.15);
+            border-radius: 6px;
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            margin: 3rem 0 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .contact-block::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, var(--primary), transparent);
+                opacity: 0.4;
+            }
+
+            .contact-block h2 {
+                margin-bottom: 0.5rem;
+            }
+
+            .contact-block p {
+                margin-bottom: 1.5rem;
+            }
+
+            .contact-block a {
+                display: inline-block;
+                font-family: var(--headline);
+                font-weight: 900;
+                font-size: 0.75rem;
+                letter-spacing: 0.25em;
+                text-transform: uppercase;
+                color: var(--bg);
+                background: var(--primary);
+                padding: 0.8rem 2.25rem;
+                border-radius: 999px;
+                text-decoration: none;
+                transition: opacity 0.2s, transform 0.2s;
+                text-shadow: none;
+            }
+
+                .contact-block a:hover {
+                    opacity: 0.85;
+                    transform: translateY(-2px);
+                }
+
+        hr {
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            margin: clamp(2rem, 4vw, 3.5rem) 0;
+        }
+
+       
+        @media (max-width: 1023px) {
+            nav {
+                width: calc(100% - 2rem);
+                padding: 0.85rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                width: calc(100% - 1.5rem);
+                padding: 0.75rem 1rem;
+                border-radius: 0 0 14px 14px;
+            }
+
+            .logo {
+                font-size: 0.72rem;
+            }
+
+            .nav-back {
+                font-size: 0.65rem;
+            }
+
+            .page-wrap {
+                padding-top: 5.5rem;
+                padding-left: 1.25rem;
+                padding-right: 1.25rem;
+            }
+
+            .liquid-card {
+                padding: 1.25rem;
+            }
+
+            .contact-block {
+                text-align: left;
+                padding: 1.5rem;
+            }
+
+           
+
+            
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                width: calc(100% - 1rem);
+                padding: 0.65rem 0.85rem;
+            }
+
+            .logo {
+                font-size: 0.62rem;
+            }
+
+            .nav-back {
+                font-size: 0.62rem;
+            }
+
+            .page-wrap {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            h2 {
+                font-size: 1rem;
+            }
+
+            p, ul li {
+                font-size: 0.875rem;
+            }
+
+           
+
+        }
+
+        /* Galaxy Z Fold cover screen */
+        @media (max-width: 360px) {
+            nav {
+                width: 100%;
+                border-radius: 0;
+                padding: 0.6rem 0.75rem;
+            }
+
+            .logo {
+                font-size: 0.58rem;
+                max-width: 50%;
+            }
+
+            .page-wrap {
+                padding-left: 0.85rem;
+                padding-right: 0.85rem;
+                padding-top: 5rem;
+            }
+
+            .liquid-card {
+                padding: 1rem;
+            }
+
+            .contact-block {
+                padding: 1.25rem;
+            }
+
+                .contact-block a {
+                    padding: 0.7rem 1.5rem;
+                    font-size: 0.65rem;
+                }
+
+           
+        }
+
+        @media (max-height: 480px) and (orientation: landscape) {
+            .page-wrap {
+                padding-top: 4.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">MUHAMMAD HAMZA ZIA <span>PORTFOLIO</span></a>
+        <a href="index.html" class="nav-back">Back to Portfolio</a>
+    </nav>
+
+    <main class="page-wrap">
+
+        <div class="page-hero">
+            <span class="label-tag">Legal Document</span>
+            <h1>Privacy &amp; <span>Security Policy</span></h1>
+            <p class="meta">Effective: January 1, 2025 &nbsp;·&nbsp; Updated: <span id="last-updated"></span></p>
+        </div>
+
+        <div class="policy-section">
+            <div class="section-tag"><span class="section-tag-num">01</span><div class="section-tag-rule"></div></div>
+            <h2>Introduction</h2>
+            <p>Welcome to the personal portfolio of <strong>Muhammad Hamza Zia</strong>. This Privacy &amp; Security Policy explains how I collect, use, and protect any information you provide when visiting or interacting with this website.</p>
+            <p>I am committed to your privacy. This policy is written in plain language so you always know exactly what is happening with your data. By using this site, you agree to the practices described below.</p>
+        </div>
+
+        <div class="policy-section">
+            <div class="section-tag"><span class="section-tag-num">02</span><div class="section-tag-rule"></div></div>
+            <h2>Information I Collect</h2>
+            <div class="liquid-card">
+                <span class="card-icon">📋</span>
+                <h3>Information You Provide Directly</h3>
+                <p>When you use the contact form you may submit your <strong>name</strong>, <strong>email address</strong>, and <strong>message</strong>. This is sent via Web3Forms directly to my inbox — no submission data is stored on any server I own.</p>
+            </div>
+            <div class="liquid-card card-secondary">
+                <span class="card-icon">📊</span>
+                <h3>Automatically Collected Data</h3>
+                <p>Standard web data may be collected in aggregated, anonymised form — browser type, device type, approximate region, pages visited, and referring URL. No individual user is identified or tracked.</p>
+            </div>
+            <h3>What I Do NOT Collect</h3>
+            <ul>
+                <li>Passwords or authentication credentials</li>
+                <li>Payment or financial information of any kind</li>
+                <li>Government ID or sensitive personal data</li>
+                <li>Precise GPS or real-time location data</li>
+                <li>Social media credentials or account information</li>
+                <li>Any data from minors under the age of 13</li>
+            </ul>
+        </div>
+
+        <div class="policy-section">
+            <div class="section-tag"><span class="section-tag-num">03</span><div class="section-tag-rule"></div></div>
+            <h2>How Your Information is Used</h2>
+            <ul>
+                <li>To read and respond to your contact enquiry</li>
+                <li>To understand what type of collaboration you are interested in</li>
+                <li>To improve the content and performance of this portfolio</li>
+                <li>To identify and resolve technical errors</li>
+            </ul>
+            <p><strong>I will never</strong> sell your information, share it with advertisers, use it for unsolicited marketing, or pass it to any third party beyond what is described here.</p>
+        </div>
+
+        <div class="policy-section">
+            <div class="section-tag"><span class="section-tag-num">04</span><div class="section-tag-rule"></div></div>
+            <h2>Third-Party Services</h2>
+            <div class="liquid-card"><h3>Web3Forms</h3><p>Contact form submissions are processed by Web3Forms and forwarded to my email. They do not store submissions permanently. See <span class="highlight">web3forms.com/privacy</span>.</p></div>
+            <div class="liquid-card"><h3>Google Fonts</h3><p>Typography is served via Google Fonts CDN. Your browser makes a request to Google's servers on page load. See <span class="highlight">policies.google.com/privacy</span>.</p></div>
+            <div class="liquid-card"><h3>Font Awesome</h3><p>Icons are loaded from the Font Awesome CDN. A standard IP-level CDN request is made on load. See <span class="highlight">fontawesome.com/privacy</span>.</p></div>
+            <div class="liquid-card card-secondary"><h3>LinkedIn &amp; External Links</h3><p>Clicking external links takes you off this site — those platforms' own policies apply. I have no control over data collected there.</p></div>
+        </div>
+
+        <div class="policy-section">
+            <div class="section-tag"><span class="section-tag-num">05</span><div class="section-tag-rule"></div></div>
+            <h2>Cookies &amp; Local Storage</h2>
+            <p>This portfolio does <strong>not</strong> use tracking cookies, advertising cookies, or any cross-site cookies.</p>
+            <h3>Local Storage</h3>
+            <p>The contact form uses your browser's <strong>localStorage</strong> to enforce a 10-submission daily limit, storing only a count and timestamp — no personal information, only on your device, cleared after 24 hours.</p>
+            <h3>Language Preference</h3>
+            <p>Your selected language may be saved in localStorage so it persists across visits. This data never leaves your device.</p>
+        </div>
+
+        <div class="policy-section" id="security">
+            <div class="section-tag"><span class="section-tag-num">06</span><div class="section-tag-rule"></div></div>
+            <h2>Security</h2>
+            <div class="liquid-card"><span class="card-icon">🔒</span><h3>HTTPS Encryption</h3><p>All traffic is encrypted via <strong>HTTPS / TLS</strong>, preventing third parties from reading data in transit.</p></div>
+            <div class="liquid-card"><span class="card-icon">🚫</span><h3>No Server-Side Storage</h3><p>This is a fully static website — no database, no user accounts, no backend. Form submissions go directly to my email and are not stored elsewhere.</p></div>
+            <div class="liquid-card card-secondary"><span class="card-icon">⚡</span><h3>Rate Limiting</h3><p>The contact form enforces <strong>10 submissions per 24 hours</strong> via client-side localStorage to protect against automated spam and abuse.</p></div>
+            <div class="liquid-card"><span class="card-icon">🧹</span><h3>No Tracking Scripts</h3><p>No third-party analytics (Google Analytics, Facebook Pixel, Hotjar, etc.) are installed. No behavioural profiling or cross-site tracking is performed.</p></div>
+            <p>If you discover a security vulnerability, please contact me immediately so I can resolve it promptly.</p>
+        </div>
+
+        <div class="policy-section">
+            <div class="section-tag"><span class="section-tag-num">07</span><div class="section-tag-rule"></div></div>
+            <h2>Your Rights</h2>
+            <ul>
+                <li><strong>Right to Access</strong> — Request details of any personal data I hold about you.</li>
+                <li><strong>Right to Correction</strong> — Ask me to correct inaccurate data.</li>
+                <li><strong>Right to Deletion</strong> — Ask me to delete any personal data you submitted.</li>
+                <li><strong>Right to Withdraw Consent</strong> — Ask me to stop communicating with you at any time.</li>
+                <li><strong>Right to Complain</strong> — Raise a concern with your local data protection authority.</li>
+                <li><strong>Right to Deletion local storage</strong> — You can delete your data stored in local storage of your browsr.(Button available at my  <a href="contact.html" title="Goto Page"> <strong>contact page</strong></a>)</li>
+
+            </ul>
+            <p>I will respond to all requests within <strong>7 business days</strong>.</p>
+        </div>
+
+        <div class="policy-section">
+            <div class="section-tag"><span class="section-tag-num">08</span><div class="section-tag-rule"></div></div>
+            <h2>Children's Privacy</h2>
+            <p>This portfolio is not directed at anyone under <strong>13 years old</strong>. If a minor has submitted data through this site, please contact me and I will delete it immediately.</p>
+        </div>
+
+        <div class="policy-section">
+            <div class="section-tag"><span class="section-tag-num">09</span><div class="section-tag-rule"></div></div>
+            <h2>Changes to This Policy</h2>
+            <p>I may update this policy to reflect changes in the website or legal requirements. The "Updated" date at the top reflects any changes. Continued use of the site after changes constitutes acceptance of the revised policy.</p>
+        </div>
+
+        <div class="policy-section">
+            <div class="section-tag"><span class="section-tag-num">10</span><div class="section-tag-rule"></div></div>
+            <h2>Copyright &amp; Intellectual Property</h2>
+            <p>All content on this portfolio — design, layout, code, graphics, text, animations, and visual identity — is the original work of <strong>Muhammad Hamza Zia</strong> and inspired by duckmartian's portfolio'.</p>
+            <p>&copy; <span class="copy-year"></span> Muhammad Hamza Zia. <strong>All Rights Reserved.</strong></p>
+            <ul>
+                <li>You may not copy, reproduce, or republish any content without prior written permission.</li>
+                <li>You may not use the design, code structure, or visual style as your own.</li>
+                <li>You may not use my name or work for commercial purposes without explicit written consent.</li>
+                <li>Linking to this portfolio is permitted provided it is not done in a misleading context.</li>
+            </ul>
+        </div>
+
+        <div class="contact-block">
+            <h2>Questions or Concerns?</h2>
+            <p>For any questions about this policy, data rights requests, or security reports, reach out directly.</p>
+            <a href="contact.html#contact">Contact Me →</a>
+        </div>
+
+    </main>
+
+   
+
+    <script>
+        const year = new Date().getFullYear();
+        document.querySelectorAll('.copy-year').forEach(el => el.textContent = year);
+        const lu = document.getElementById('last-updated');
+        if (lu) lu.textContent = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    </script>
+
+</body>
+</html>

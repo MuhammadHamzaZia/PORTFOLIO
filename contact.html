@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>CONTACT | HAMZA ZIA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+        darkMode: "class",
+        theme: {
+        extend: {
+        colors: {
+        "primary": "#8ff5ff",
+        "secondary": "#ac89ff",
+        "tertiary": "#e9ffb9",
+        "dim": "#d8dee9"
+        }
+        }
+        }
+        }
+    </script>
+    <link rel="icon" type="image/png" href="icon.jpg" alt="Muhammad Hamza Zia - contact page">
+</head>
+
+<body class="cursor-crosshair overflow-x-hidden bg-[#05050f]">
+    <!-- GPU-Accelerated System Preloader -->
+    <div id="system-preloader" class="fixed inset-0 z-[9999] bg-[#05050f] flex flex-col items-center justify-center transition-opacity duration-700">
+        <div class="font-headline font-black text-2xl uppercase tracking-tighter text-white mb-6 animate-pulse">
+            JUST A <span class="outlined-text">SECOND</span>
+        </div>
+        <div class="w-64 h-1 bg-white/10 relative overflow-hidden rounded-full">
+            <div class="custom-loading-bar absolute top-0 left-0 h-full w-1/2 bg-primary shadow-[0_0_15px_#8ff5ff]"></div>
+        </div>
+    </div>
+
+    <canvas id="particles-canvas"></canvas>
+
+    <nav>
+        <div class="logo font-headline font-black text-2xl uppercase tracking-tighter text-white">
+            MUHAMMAD HAMZA ZIA <span class="outlined-text">COMMA</span>
+        </div>
+        <div class="nav-links flex gap-8 items-center">
+            <a href="index.html">GO BACK</a>
+            <div class="hidden xl:flex gap-3 ml-12 border-l border-white/10 pl-8 items-center">
+                <a href="https://www.linkedin.com/in/muhammad-hamza-ziaa" target="_blank" title="LinkedIn">
+                    <i class="fa-brands fa-linkedin text-dim hover:text-primary transition-colors"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div id="success-notification" class="fixed top-0 left-1/2 -translate-x-1/2 z-[50] opacity-0 transition-all duration-500 pointer-events-none">
+        <div class="bg-primary/10 backdrop-blur-md border border-primary/20 px-6 py-2 rounded-full flex items-center gap-3 shadow-[0_0_20px_rgba(143,245,255,0.1)]">
+            <i class="fa-solid fa-circle-check text-primary text-sm"></i>
+            <span class="text-primary font-mono text-[10px] font-black uppercase tracking-[0.3em]">Signal Transmitted</span>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-4 sm:px-8 lg:px-12 pt-32 pb-16 lg:pt-48 lg:pb-32 relative z-10 w-full max-w-screen-2xl min-h-screen flex items-center">
+        <span class="section-num hidden sm:block !top-20">SIGNAL</span>
+
+        <div class="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center lg:items-start w-full">
+
+            <!-- Left Column: Title and Quote -->
+            <div class="w-full lg:w-5/12 reveal flex flex-col justify-center">
+
+                <div class="mb-6 flex items-center gap-4 border border-primary/20 bg-primary/5 px-4 py-2 w-max rounded-sm">
+                    <span class="relative flex h-2 sm:h-3 w-2 sm:w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 sm:h-3 w-2 sm:w-3 bg-primary"></span>
+                    </span>
+                    <span class="text-[8px] sm:text-[10px] font-black tracking-[0.4em] sm:tracking-[0.5em] text-primary uppercase">Uplink Status: Active</span>
+                </div>
+
+                <div class="contact-title-fit flex flex-col gap-0">
+                    <h2 class="massive-text outlined-text uppercase tracking-tighter leading-[0.85] !text-[clamp(3rem,8vw,6rem)]">SEND A</h2>
+                    <h2 class="massive-text text-gradient uppercase tracking-tighter leading-[0.85] !text-[clamp(3rem,8vw,6rem)]">SIGNAL</h2>
+                    <h2 class="massive-text outlined-text uppercase tracking-tighter leading-[0.85] !text-[clamp(3rem,8vw,6rem)]">TO ME</h2>
+                </div>
+
+                <div class="mt-8 sm:mt-12 p-6 sm:p-8 border-l-2 border-primary/20 bg-white/5 backdrop-blur-md max-w-2xl">
+                    <p class="text-dim text-sm sm:text-base lg:text-lg leading-relaxed italic">
+                        "The bridge between intelligence and systems begins with a single packet. Initiate your transmission below."
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Right Column: Form -->
+            <div class="w-full lg:w-7/12 relative mt-8 lg:mt-0">
+
+                <div class="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-primary/60 pointer-events-none"></div>
+                <div class="absolute -top-2 -right-2 w-8 h-8 border-t-2 border-r-2 border-primary/60 pointer-events-none"></div>
+                <div class="absolute -bottom-2 -left-2 w-8 h-8 border-b-2 border-l-2 border-primary/60 pointer-events-none"></div>
+                <div class="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-primary/60 pointer-events-none"></div>
+
+                <div class="liquid-card reveal dark-glass-fade relative p-6 sm:p-10 w-full" style="transition-delay: 0.2s;">
+
+                    <form action="https://api.web3forms.com/submit" method="POST" id="form" class="relative z-10 w-full">
+                        <input type="hidden" name="access_key" value="34c29d2e-07b1-4483-933a-f07d5121e37f">
+                        <input type="hidden" name="from_name" value="Portfolio Signal">
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                        <div class="flex flex-col sm:flex-row gap-6 mb-6 sm:mb-8">
+                            <div class="w-full sm:w-1/2">
+                                <label class="block text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-2">Operator Identity</label>
+                                <input type="text" name="name" required placeholder="NAME / COMPONENT"
+                                       class="w-full bg-black/60 border-b border-white/20 p-3 sm:p-4 text-xs sm:text-sm text-white focus:border-primary outline-none transition-all placeholder:text-white/20 font-mono">
+                            </div>
+                            <div class="w-full sm:w-1/2">
+                                <label class="block text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-2">Return Address</label>
+                                <input type="email" name="email" required placeholder="EMAIL@DOMAIN.SYS"
+                                       class="w-full bg-black/60 border-b border-white/20 p-3 sm:p-4 text-xs sm:text-sm text-white focus:border-primary outline-none transition-all placeholder:text-white/20 font-mono">
+                            </div>
+                        </div>
+
+                        <div class="mb-8">
+                            <label class="block text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-2">Signal Content</label>
+                            <textarea name="message" required rows="6" placeholder="TYPE YOUR MESSAGE ENCRYPTED OR PLAIN..."
+                                      class="w-full bg-black/60 border-b border-white/20 p-3 sm:p-4 text-xs sm:text-sm text-white focus:border-primary outline-none transition-all placeholder:text-white/20 font-mono resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" id="submit-btn"
+                                class="group relative w-full overflow-hidden border border-primary bg-primary/5 py-4 sm:py-6 transition-all hover:bg-primary">
+                            <span class="relative z-10 text-xs sm:text-sm font-black uppercase tracking-[0.4em] sm:tracking-[0.6em] text-primary group-hover:text-black ">
+                                Send Message →
+                            </span>
+                        </button>
+
+                        <div id="result" class="mt-6 text-center text-[10px] sm:text-xs font-black uppercase tracking-[0.3em]"></div>
+                    </form>
+
+                    <div class="absolute inset-0 pointer-events-none overflow-hidden opacity-20 rounded-[6px]">
+                        <div class="w-full h-[2px] bg-primary animate-scan"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="container py-24 flex flex-col items-center text-center relative w-full">
+
+        <!-- Unified HUD Panel - Pinned to Top Right -->
+        <div class="absolute top-4 right-4 md:top-8 md:right-8 flex flex-row items-center gap-3 sm:gap-4 bg-white/5 border border-white/10 rounded-xl px-3 py-2 sm:px-4 sm:py-3 backdrop-blur-md z-20 shadow-lg shadow-black/20">
+
+            <!-- Frequency Animation -->
+            <div class="flex items-center gap-2 sm:gap-3 cursor-default" aria-hidden="true">
+                <div class="flex gap-1 items-end h-5 mb-1">
+                    <div class="w-1 bg-cyan-400 h-2 opacity-40"></div>
+                    <div class="w-1 bg-cyan-400 h-4 opacity-60 animate-pulse"></div>
+                    <div class="w-1 bg-cyan-400 h-5 opacity-100"></div>
+                    <div class="w-1 bg-cyan-400 h-3 opacity-60"></div>
+                    <div class="w-1 bg-cyan-400 h-2 opacity-40"></div>
+                </div>
+                <span class="text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-400/80">
+                    Freq: 2.4GHz <span class="mx-1 opacity-30">//</span> <span class="hidden sm:inline">AI-MOD_v3</span>
+                </span>
+            </div>
+
+            <!-- Divider -->
+            <div class="hidden sm:block h-6 w-[1px] bg-white/10" aria-hidden="true"></div>
+
+            <!-- System Reset Button -->
+            <button id="system-reset-link"
+                    class="group flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-1.5 rounded-full border border-red-500/40 bg-red-500/10 hover:bg-red-500 hover:border-red-500 transition-all duration-300">
+                <i class="fa-solid fa-microchip text-[9px] sm:text-[10px] text-red-400 group-hover:text-white transition-colors" aria-hidden="true"></i>
+                <span class="text-[8px] sm:text-[9px] font-black uppercase tracking-widest text-red-400 group-hover:text-white whitespace-nowrap">
+                    Clear Identity
+                </span>
+            </button>
+        </div>
+
+        <!-- Main Logo -->
+        <div class="logo font-headline font-black text-3xl uppercase tracking-tighter text-white mb-4 mt-16 md:mt-12">
+            MUHAMMAD HAMZA ZIA <span class="outlined-text !opacity-40">PORTFOLIO</span>
+        </div>
+
+        <!-- Social Links Cluster -->
+        <div class="flex flex-wrap justify-center gap-x-12 gap-y-6" id="social-cluster">
+            <a href="https://github.com/MuhammadHamzaZia" target="_blank"
+               class="text-white hover:text-primary transition-all flex items-center gap-3 group">
+                <i class="fa-brands fa-github text-xl"></i>
+                <span class="text-[10px] font-black uppercase tracking-widest opacity-60 group-hover:opacity-100">GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/muhammad-hamza-ziaa" target="_blank"
+               class="text-white hover:text-primary transition-all flex items-center gap-3 group">
+                <i class="fa-brands fa-linkedin text-xl"></i>
+                <span class="text-[10px] font-black uppercase tracking-widest opacity-60 group-hover:opacity-100">LinkedIn</span>
+            </a>
+            <a href="https://wa.me/923294515804" target="_blank" class="text-white hover:text-primary transition-all flex items-center gap-3 group">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+
+                <span class="text-[10px] font-black uppercase tracking-widest opacity-60 group-hover:opacity-100">Whatsapp</span>
+            </a>
+            <a href="https://www.instagram.com/muhammad_hamza_ziaa/" target="_blank"
+               class="text-white hover:text-primary transition-all flex items-center gap-3 group">
+                <i class="fa-brands fa-instagram text-xl"></i>
+                <span class="text-[10px] font-black uppercase tracking-widest opacity-60 group-hover:opacity-100">Instagram</span>
+            </a>
+        </div>
+
+
+        <!-- Copyright & Legal -->
+        <div class="border-t border-white/10 mt-10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 w-full text-center md:text-left">
+            <p class="text-white/30 text-xs font-body tracking-widest uppercase">
+                &copy; <span id="copy-year"></span> Muhammad Hamza Zia. All Rights Reserved.
+            </p>
+
+            <div class="flex items-center gap-6">
+                <a href="privacy-policy.html"
+                   class="text-white/30 hover:text-primary text-xs font-body tracking-widest uppercase transition-colors duration-200">
+                    Privacy Policy
+                </a>
+                <span class="text-white/10">|</span>
+                <a href="privacy-policy.html#security"
+                   class="text-white/30 hover:text-primary text-xs font-body tracking-widest uppercase transition-colors duration-200">
+                    Security
+                </a>
+            </div>
+
+            <p class="text-white/20 text-xs font-body tracking-widest uppercase">
+                Designed &amp; Built by
+                <span class="text-primary/60">Muhammad Hamza Zia</span>
+            </p>
+        </div>
+
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="three-effects.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
