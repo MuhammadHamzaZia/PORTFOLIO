@@ -262,39 +262,55 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 // --- MOBILE SCROLL HOVER ENGINE ---
     function initMobileHoverOnScroll() {
-        // Guard clause: Only initialize if the device lacks a fine/accurate mouse pointer
+        // Guard clause: Exit if device features a precision mouse pointer
         if (window.matchMedia('(pointer: fine)').matches) return;
 
-        // 1. Automatically wrap plain text lines inside hero massive elements into individual trackable nodes
+        // 1. DYNAMIC NAVIGATION LOGO TOUCH SYSTEM
+        // Because the navbar is position: fixed, it never hits the middle 20% scroll zone.
+        const navPortfolioSpan = document.querySelector('nav .logo .outlined-text');
+        if (navPortfolioSpan) {
+            const navContainer = document.querySelector('nav');
+            if (navContainer) {
+                // Glow when finger makes contact anywhere on the bar
+                navContainer.addEventListener('touchstart', () => {
+                    navPortfolioSpan.classList.add('has-hover');
+                }, { passive: true });
+                
+                // Dim down when finger lifts off screen
+                navContainer.addEventListener('touchend', () => {
+                    setTimeout(() => navPortfolioSpan.classList.remove('has-hover'), 600);
+                }, { passive: true });
+            }
+        }
+
+        // 2. PREPARE MAIN PAGES / HEADERS FOR TRACKING
         const massiveHeaders = document.querySelectorAll('#hero .massive-text, section .massive-text');
         massiveHeaders.forEach(header => {
-            // Target elements or raw text tags to look for outlined segments
             const outlinedSpans = header.querySelectorAll('.outlined-text');
             outlinedSpans.forEach(span => span.classList.add('mobile-track'));
         });
 
-        // 2. Identify the fixed header asset and footer component elements
-        const navPortfolioSpan = document.querySelector('nav .logo .outlined-text');
-        if (navPortfolioSpan) navPortfolioSpan.classList.add('mobile-track');
-
+        // Tag footer branding node so the observer detects it beautifully at the end
         const footerPortfolioSpan = document.querySelector('footer .logo .outlined-text');
         if (footerPortfolioSpan) footerPortfolioSpan.classList.add('mobile-track');
 
-        // 3. Compile every interactive structural component into our tracking pool
+        // 3. COMPILE ALL STRUCTURAL PORTFOLIO ELEMENTS
         const scrollTargets = document.querySelectorAll(
-            '.liquid-card, #projects-container a, #jazzcash-trigger, #alfalah-trigger, .crypto-copy-btn, .outlined-text, .mobile-track'
+            '.liquid-card, #projects-container a, #jazzcash-trigger, #alfalah-trigger, .crypto-copy-btn, .mobile-track'
         );
         
         if (!scrollTargets.length) return;
 
         /**
-         * Laser Matrix Framing Configuration:
-         * Margins track elements within the middle 20% viewport slice.
+         * Middle Viewport Laser Scan Margin Grid:
+         * Top margin: -40% (Filters out top 40% window space)
+         * Bottom margin: -40% (Filters out bottom 40% window space)
+         * Target operational focus sector = Remaining central 20%
          */
         const scanOptions = {
             root: null,
             rootMargin: '-40% 0% -40% 0%',
-            threshold: 0.05
+            threshold: 0.02 // Fires instantly when the boundary edge enters the laser slice
         };
 
         const scanObserver = new IntersectionObserver((entries) => {
@@ -309,7 +325,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         scrollTargets.forEach(target => scanObserver.observe(target));
     }
-   // --- GLOBAL INITIALIZATION EXECUTION ---
+
+    // --- GLOBAL INITIALIZATION EXECUTION ---
     window.addEventListener('load', () => {
         const preloader = document.getElementById('system-preloader');
         if (preloader) {
@@ -322,14 +339,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-   // Execute data assembly and rendering frameworks
+    // Execute dynamic content builders
     renderJourney();
     renderTools();
+    
+    // Core engine module assignments
     initModals();
     initCryptoCopy();
     initContactForm();
     initPrivacyProtocol();
 
-    // Fire scroll tracking engine once layout configurations finalize building inside DOM
+    // Fire the scroll tracking engine once page paintings settle inside DOM
     setTimeout(initMobileHoverOnScroll, 150);
 });
