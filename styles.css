@@ -753,55 +753,62 @@ input:focus, textarea:focus {
     opacity: 1 !important;
 }
 
-/* ─── Advanced Mobile Scroll-Hover System ─── */
+/* ==========================================================================
+   ADVANCED MOBILE SCROLL-HOVER BRUTALIST ALIGNMENT
+   ========================================================================== */
 
-/* 1. Dynamic Top Navigation Bar Adjustments */
-nav .logo span.outlined-text.has-hover {
-    -webkit-text-stroke: 2px var(--primary) !important;
-    color: rgba(143, 245, 255, 0.1) !important;
-    text-shadow: 0 0 25px var(--primary) !important;
-}
+/* Only apply these overrides on devices lacking a fine pointer (touch screens) */
+@media (pointer: coarse) {
+    
+    /* 1. Navigation Header & Footer Logo Active Glow States */
+    nav .logo span.outlined-text.has-hover,
+    footer .logo span.outlined-text.has-hover {
+        -webkit-text-stroke: 2px var(--primary) !important;
+        color: rgba(143, 245, 255, 0.15) !important;
+        text-shadow: 0 0 30px var(--primary), 0 0 10px var(--primary) !important;
+        opacity: 1 !important;
+    }
 
-/* 2. Massive Outlined Structural Headers (.massive-text .outlined-text) */
-.massive-text .outlined-text.has-hover,
-.outlined-text.has-hover {
-    -webkit-text-stroke: 2px var(--primary) !important;
-    color: rgba(143, 245, 255, 0.1) !important;
-    text-shadow: 0 0 40px var(--primary) !important;
-}
+    /* 2. Massive Content Headers (.massive-text .outlined-text) */
+    .massive-text .outlined-text.has-hover,
+    .outlined-text.has-hover {
+        -webkit-text-stroke: 2px var(--primary) !important;
+        color: rgba(143, 245, 255, 0.1) !important;
+        text-shadow: 0 0 45px var(--primary), 0 0 15px var(--primary) !important;
+    }
 
-/* 3. Core Structural Liquid Grid Containers */
-.liquid-card.has-hover {
-    border-color: var(--primary) !important;
-    transform: translateY(clamp(-5px, -0.6vw, -10px)) scale(clamp(1.005, 1.002 + 0.001 * 1vw, 1.02)) !important;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(143,245,255,0.1) !important;
-}
-.liquid-card.has-hover::before {
-    opacity: 1 !important;
-}
-.liquid-card.has-hover img,
-.liquid-card.has-hover i {
-    transform: scale(1.1) !important;
-}
+    /* 3. Core Structural Glass Bento Layouts */
+    .liquid-card.has-hover {
+        border-color: var(--primary) !important;
+        transform: translateY(-6px) scale(1.015) !important;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 25px rgba(143,245,255,0.15) !important;
+    }
+    
+    /* Reveal inner ambient fluid matrix radial light */
+    .liquid-card.has-hover::before {
+        opacity: 1 !important;
+    }
+    
+    /* Smooth scale transitions for internal media icons */
+    .liquid-card.has-hover img,
+    .liquid-card.has-hover i {
+        transform: scale(1.1) !important;
+    }
 
-/* 4. Asymmetric List Links, Project Nodes, and Payment Triggers */
-#projects-container a.has-hover h3,
-#jazzcash-trigger.has-hover h3,
-#alfalah-trigger.has-hover h3,
-.crypto-copy-btn.has-hover span.font-black {
-    color: var(--primary) !important;
-}
-#projects-container a.has-hover div.translate-x-2,
-#jazzcash-trigger.has-hover div.translate-x-2,
-#alfalah-trigger.has-hover div.translate-x-2 {
-    transform: translateX(0) !important;
-    opacity: 1 !important;
-}
+    /* 4. Project List Anchors & Payment Modules */
+    #projects-container a.has-hover h3,
+    #jazzcash-trigger.has-hover h3,
+    #alfalah-trigger.has-hover h3,
+    .crypto-copy-btn.has-hover span.font-black {
+        color: var(--primary) !important;
+        text-shadow: 0 0 15px rgba(143,245,255,0.4) !important;
+    }
 
-/* 5. Footer Layout Branding Sync */
-footer .logo span.outlined-text.has-hover {
-    color: rgba(143, 245, 255, 0.15) !important;
-    -webkit-text-stroke: 2px var(--primary) !important;
-    opacity: 1 !important;
-    text-shadow: 0 0 30px var(--primary) !important;
+    /* Slide peripheral arrows and indicators smoothly into frame */
+    #projects-container a.has-hover div.translate-x-2,
+    #jazzcash-trigger.has-hover div.translate-x-2,
+    #alfalah-trigger.has-hover div.translate-x-2 {
+        transform: translateX(0) !important;
+        opacity: 1 !important;
+    }
 }
