@@ -260,8 +260,56 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
     }
+// --- MOBILE SCROLL HOVER ENGINE ---
+    function initMobileHoverOnScroll() {
+        // Guard clause: Only initialize if the device lacks a fine/accurate mouse pointer
+        if (window.matchMedia('(pointer: fine)').matches) return;
 
-    // --- GLOBAL INITIALIZATION ---
+        // 1. Automatically wrap plain text lines inside hero massive elements into individual trackable nodes
+        const massiveHeaders = document.querySelectorAll('#hero .massive-text, section .massive-text');
+        massiveHeaders.forEach(header => {
+            // Target elements or raw text tags to look for outlined segments
+            const outlinedSpans = header.querySelectorAll('.outlined-text');
+            outlinedSpans.forEach(span => span.classList.add('mobile-track'));
+        });
+
+        // 2. Identify the fixed header asset and footer component elements
+        const navPortfolioSpan = document.querySelector('nav .logo .outlined-text');
+        if (navPortfolioSpan) navPortfolioSpan.classList.add('mobile-track');
+
+        const footerPortfolioSpan = document.querySelector('footer .logo .outlined-text');
+        if (footerPortfolioSpan) footerPortfolioSpan.classList.add('mobile-track');
+
+        // 3. Compile every interactive structural component into our tracking pool
+        const scrollTargets = document.querySelectorAll(
+            '.liquid-card, #projects-container a, #jazzcash-trigger, #alfalah-trigger, .crypto-copy-btn, .outlined-text, .mobile-track'
+        );
+        
+        if (!scrollTargets.length) return;
+
+        /**
+         * Laser Matrix Framing Configuration:
+         * Margins track elements within the middle 20% viewport slice.
+         */
+        const scanOptions = {
+            root: null,
+            rootMargin: '-40% 0% -40% 0%',
+            threshold: 0.05
+        };
+
+        const scanObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('has-hover');
+                } else {
+                    entry.target.classList.remove('has-hover');
+                }
+            });
+        }, scanOptions);
+
+        scrollTargets.forEach(target => scanObserver.observe(target));
+    }
+   // --- GLOBAL INITIALIZATION EXECUTION ---
     window.addEventListener('load', () => {
         const preloader = document.getElementById('system-preloader');
         if (preloader) {
@@ -269,11 +317,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 preloader.classList.add('preloader-complete');
                 handleWelcomeSequence();
             }, 300);
+        } else {
+            handleWelcomeSequence();
         }
     });
 
+   // Execute data assembly and rendering frameworks
+    renderJourney();
+    renderTools();
     initModals();
     initCryptoCopy();
     initContactForm();
     initPrivacyProtocol();
+
+    // Fire scroll tracking engine once layout configurations finalize building inside DOM
+    setTimeout(initMobileHoverOnScroll, 150);
 });
