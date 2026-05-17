@@ -7,8 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
-   
-    
+
+
     <!-- Primary Meta Tags -->
     <meta name="title" content="Muhammad Hamza Zia | AI Engineer & Project Manager">
     <meta name="description" content="Portfolio of Muhammad Hamza Zia, a BS Artificial Intelligence student at UCP Lahore. focusing on machine learning, data science, robotics, and neural networks to create intelligent systems. Specializing in Scalable AI Projects, Full Stack Development, AI integration and Project Management.">
@@ -140,8 +140,10 @@
     </script>
 </head>
 
+
 <body>
-    <!-- ADD THIS ENTIRE BLOCK: GPU-Accelerated System Preloader -->
+
+    <!-- ── Preloader ── -->
     <div id="system-preloader" class="fixed inset-0 z-[9999] bg-[#05050f] flex flex-col items-center justify-center transition-opacity duration-700">
         <div class="unselectable font-headline font-black text-2xl uppercase tracking-tighter text-white mb-6 animate-pulse">
             SYSTEM <span class="outlined-text">INITIALIZING</span>
@@ -150,27 +152,28 @@
             <div class="custom-loading-bar absolute top-0 left-0 h-full w-1/2 bg-primary shadow-[0_0_15px_#8ff5ff]"></div>
         </div>
     </div>
-    <!-- END PRELOADER BLOCK -->
-    <!-- Welcome Back Overlay -->
+
+    <!-- ── Welcome Back Overlay ── -->
     <div id="welcome-overlay" class="fixed inset-0 z-[9998] bg-[#05050f]/80 backdrop-blur-md flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-1000">
         <div class="text-center">
             <div class="text-primary unselectable font-mono text-[10px] tracking-[0.4em] mb-2 animate-pulse uppercase">Link Established</div>
-            <h2 id="welcome-message-text" class="unselectable massive-text   text-white text-4xl sm:text-6xl font-black uppercase tracking-tighter"></h2>
+            <h2 id="welcome-message-text" class="unselectable massive-text text-white font-black uppercase tracking-tighter"></h2>
             <div class="unselectable mt-4 text-dim/40 font-mono text-[8px] uppercase tracking-widest">Resuming Session...</div>
         </div>
     </div>
 
-
     <canvas id="particles-canvas"></canvas>
 
+    <!-- ── Navigation ── -->
     <nav>
-        <div class="logo font-headline font-black text-2xl uppercase tracking-tighter text-white">
+        <div class="logo font-headline font-black uppercase tracking-tighter text-white">
             MUHAMMAD HAMZA ZIA <span class="outlined-text">PORTFOLIO</span>
         </div>
-        <div class="nav-links flex gap-8 items-center">
+        <div class="nav-links flex items-center">
             <a href="#journey">Journey</a>
             <a href="#skills">Skills</a>
             <a href="#projects">Projects</a>
+            <!-- Social icons: shown at 1280px+ via CSS -->
             <div class="hidden xl:flex gap-3 ml-12 border-l border-white/10 pl-8 items-center">
                 <a href="https://github.com/MuhammadHamzaZia" target="_blank" title="GitHub">
                     <i class="fa-brands fa-github text-dim hover:text-primary transition-colors"></i>
@@ -179,10 +182,9 @@
                     <i class="fa-brands fa-linkedin text-dim hover:text-primary transition-colors"></i>
                 </a>
                 <a href="contact.html" title="Email">
-                    <i class="fa-solid fa-envelope text-dim hover:text-primary transition-colors">
-                    </i>
+                    <i class="fa-solid fa-envelope text-dim hover:text-primary transition-colors"></i>
                 </a>
-                <a href="https://wa.me/923294515804" target="_blank" title="whatsapp">
+                <a href="https://wa.me/923294515804" target="_blank" title="WhatsApp">
                     <i class="fa-brands fa-whatsapp text-dim hover:text-primary transition-colors"></i>
                 </a>
                 <a href="https://www.instagram.com/muhammad_hamza_ziaa/" target="_blank" title="Instagram">
@@ -192,115 +194,133 @@
         </div>
     </nav>
 
-
+    <!-- ══════════════════════════════════════════ MAIN ══════════════════════════════════════════ -->
     <main class="container">
 
+        <!-- ── HERO ── -->
         <section id="hero">
-
             <div class="hero-content">
+
                 <div class="mb-6 reveal">
                     <span class="text-xs font-black tracking-[0.3em] uppercase opacity-50 text-white">
-                        Student & Aspiring AI Engineer
+                        Student &amp; Aspiring AI Engineer
                     </span>
-                    <h1 class="text-4xl md:text-6xl font-black mt-2 text-white">MUHAMMAD HAMZA ZIA</h1>
+                    <h1 class="font-black mt-2 text-white">MUHAMMAD HAMZA ZIA</h1>
                 </div>
-                <span class="hero-subtitle reveal text-primary/80 font-bold tracking-widest uppercase text-sm">
+
+                <span class="hero-subtitle reveal font-bold tracking-widest uppercase">
                     BS ARTIFICIAL INTELLIGENCE @ UCP | PROJECT MANAGER
                 </span>
-                <h2 class="massive-text reveal mt-4" style="transition-delay: 0.1s;">
+
+                <h2 class="massive-text reveal mt-4" style="transition-delay:0.1s;">
                     <span>BUILDING</span><br>
                     <span class="outlined-text">SCALABLE</span><br>
                     <span class="text-gradient">SYSTEMS</span>
                 </h2>
+
+                <!-- LinkedIn badge: absolute on wide, flows inline on narrow (CSS handles it) -->
                 <div class="linkdin-card">
-                    <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="dark" data-type="HORIZONTAL" data-vanity="muhammad-hamza-ziaa" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://pk.linkedin.com/in/muhammad-hamza-ziaa?trk=profile-badge"></a></div>
+                    <div class="badge-base LI-profile-badge"
+                         data-locale="en_US" data-size="large" data-theme="dark"
+                         data-type="HORIZONTAL" data-vanity="muhammad-hamza-ziaa" data-version="v1">
+                        <a class="badge-base__link LI-simple-link"
+                           href="https://pk.linkedin.com/in/muhammad-hamza-ziaa?trk=profile-badge"></a>
+                    </div>
                 </div>
-                <div class="reveal mt-8 max-w-4xl" style="transition-delay: 0.3s;">
-                    <p class="text-xl font-body text-white/90 leading-relaxed drop-shadow-lg" id="static-bio">
-                        Motivated project manager and developer currently pursuing a BS in Artificial Intelligence. Skilled in organizing tasks, solving complex problems, and connecting technical frameworks with practical needs to build robust SaaS platforms and effective web solutions.
+
+                <div class="reveal mt-8 max-w-4xl" style="transition-delay:0.3s;">
+                    <p class="font-body text-white/90 leading-relaxed drop-shadow-lg" id="static-bio">
+                        Motivated project manager and developer currently pursuing a BS in Artificial Intelligence.
+                        Skilled in organizing tasks, solving complex problems, and connecting technical frameworks
+                        with practical needs to build robust SaaS platforms and effective web solutions.
                     </p>
                 </div>
 
-                <div class="reveal mt-8 flex gap-6" style="transition-delay: 0.4s;">
-                    <a href="#journey"
-                       class="text-lg font-bold uppercase tracking-widest hover:text-primary transition-all">Explore Experience →</a>
+                <div class="reveal mt-8 flex gap-6" style="transition-delay:0.4s;">
+                    <a href="#journey" class="font-bold uppercase tracking-widest hover:text-primary transition-all">Explore Experience →</a>
                     <a href="https://github.com/MuhammadHamzaZia" target="_blank"
-                       class="outlined-text text-lg font-bold uppercase tracking-widest hover:text-primary transition-all">GitHub Profile</a>
+                       class="outlined-text font-bold uppercase tracking-widest hover:text-primary transition-all">GitHub Profile</a>
                 </div>
+
             </div>
-        </section>
+        </section><!-- /hero -->
+        <!-- ══ SECTIONS WRAPPER ══ -->
         <div class="elements">
+
+            <!-- ── 01 JOURNEY ── -->
             <section id="journey">
                 <span class="section-num">01</span>
+
                 <div class="grid grid-cols-12 gap-8 lg:gap-16">
 
-                    <!-- Left Side: Title (Sticky on Laptop) -->
-                    <div class="col-span-12 lg:col-span-4 mb-12 lg:mb-0 lg:sticky lg:top-32 lg:h-fit">
-                        <h3 class="massive-text outlined-text leading-[0.8] !text-[clamp(3rem,12vw,7rem)] uppercase">
+                    <!-- Left: sticky title -->
+                    <div class="col-span-12 lg:col-span-4 lg:sticky lg:top-32 lg:h-fit">
+                        <h3 class="massive-text outlined-text leading-[0.8] uppercase">
                             JO<br>URN<br>EY
                         </h3>
                         <div class="mt-8 border-l-2 border-primary/20 pl-6">
-                            <p class="text-dim text-sm sm:text-base max-w-sm font-mono uppercase tracking-widest opacity-60">
+                            <p class="text-dim font-mono uppercase tracking-widest opacity-60">
                                 Mapping of professional and academic evolution.
                             </p>
                         </div>
                     </div>
 
-                    <!-- Right Side: Experience Cards -->
+                    <!-- Right: cards -->
                     <div class="col-span-12 lg:col-span-8 space-y-6" id="journey-container">
 
                         <!-- Card 1: Education -->
-                        <div class="liquid-card p-8 reveal border border-white/5 hover:border-primary/10 transition-all group">
-                            <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
+                        <div class="liquid-card reveal border border-white/5 hover:border-primary/10 transition-all group">
+                            <div class="flex flex-wrap items-start justify-between gap-4 mb-6">
                                 <div>
-                                    <h3 class="text-2xl sm:text-3xl font-black tracking-tighter text-white group-hover:text-primary transition-colors">
+                                    <h3 class="font-black tracking-tighter text-white group-hover:text-primary transition-colors">
                                         BS ARTIFICIAL INTELLIGENCE
                                     </h3>
                                     <p class="text-secondary font-black uppercase tracking-[0.2em] text-xs mt-2">
                                         University of Central Punjab
                                     </p>
                                 </div>
-                                <span class="text-primary font-mono text-[10px] sm:text-xs font-black tracking-[0.3em] uppercase bg-primary/5 px-3 py-1 border border-primary/10 rounded-full h-fit">
+                                <span class="text-primary font-mono text-[10px] font-black tracking-[0.3em] uppercase bg-primary/5 px-3 py-1 border border-primary/10 rounded-full h-fit">
                                     Sept 2024 — Present
                                 </span>
                             </div>
-                            <p class="text-dim/70 leading-relaxed text-sm sm:text-base font-body max-w-2xl">
-                                Currently in my 4th semester. Relevant coursework includes advanced software development and data analysis. Focusing on machine learning, data science, robotics, and neural networks to create intelligent systems.
+                            <p class="text-dim/70 leading-relaxed font-body max-w-2xl">
+                                Currently in my 4th semester. Relevant coursework includes advanced software development and data analysis.
+                                Focusing on machine learning, data science, robotics, and neural networks to create intelligent systems.
                             </p>
                         </div>
 
                         <!-- Card 2: Internship -->
-                        <div class="liquid-card p-8 reveal border border-white/5 hover:border-primary/10 transition-all group">
-                            <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
+                        <div class="liquid-card reveal border border-white/5 hover:border-primary/10 transition-all group">
+                            <div class="flex flex-wrap items-start justify-between gap-4 mb-6">
                                 <div>
-                                    <h3 class="text-2xl sm:text-3xl font-black tracking-tighter text-white group-hover:text-primary transition-colors">
+                                    <h3 class="font-black tracking-tighter text-white group-hover:text-primary transition-colors">
                                         WEB DEVELOPER (INTERN)
                                     </h3>
                                     <p class="text-secondary font-black uppercase tracking-[0.2em] text-xs mt-2">
                                         DevXcript (Remote)
                                     </p>
                                 </div>
-                                <span class="text-primary font-mono text-[10px] sm:text-xs font-black tracking-[0.3em] uppercase bg-primary/5 px-3 py-1 border border-primary/10 rounded-full h-fit">
+                                <span class="text-primary font-mono text-[10px] font-black tracking-[0.3em] uppercase bg-primary/5 px-3 py-1 border border-primary/10 rounded-full h-fit">
                                     Summer 2025
                                 </span>
                             </div>
-                            <p class="text-dim/70 leading-relaxed text-sm sm:text-base font-body max-w-2xl">
+                            <p class="text-dim/70 leading-relaxed font-body max-w-2xl">
                                 Working on mid-sized web projects to provide professional services for individuals and business clients.
                             </p>
                         </div>
 
-                        <!-- Card 3: Business Ownership -->
-                        <div class="liquid-card p-8 reveal border border-white/5 hover:border-primary/10 transition-all group">
-                            <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
+                        <!-- Card 3: Business -->
+                        <div class="liquid-card reveal border border-white/5 hover:border-primary/10 transition-all group">
+                            <div class="flex flex-wrap items-start justify-between gap-4 mb-6">
                                 <div>
-                                    <h3 class="text-2xl sm:text-3xl font-black tracking-tighter text-white group-hover:text-primary transition-colors">
+                                    <h3 class="font-black tracking-tighter text-white group-hover:text-primary transition-colors">
                                         ONLINE STORE MANAGEMENT
                                     </h3>
                                     <p class="text-secondary font-black uppercase tracking-[0.2em] text-xs mt-2">
                                         E-commerce Manager | Entrepreneurial
                                     </p>
                                 </div>
-                                <span class="text-primary font-mono text-[10px] sm:text-xs font-black tracking-[0.3em] uppercase bg-primary/5 px-3 py-1 border border-primary/10 rounded-full h-fit">
+                                <span class="text-primary font-mono text-[10px] font-black tracking-[0.3em] uppercase bg-primary/5 px-3 py-1 border border-primary/10 rounded-full h-fit">
                                     EXPERIENCED
                                 </span>
                             </div>
@@ -309,38 +329,35 @@
                                     END-TO-END
                                 </span>
                             </div>
-                            <p class="text-dim/70 leading-relaxed text-sm sm:text-base font-body max-w-2xl">
-                                Handling all operations dealings, taxes, and deliveries for my online store served as a real world MBA, teaching me how to build brand and business systems, communicate effectively and solve complex problems.
+                            <p class="text-dim/70 leading-relaxed font-body max-w-2xl">
+                                Handling all operations dealings, taxes, and deliveries for my online store served as a real world MBA,
+                                teaching me how to build brand and business systems, communicate effectively and solve complex problems.
                             </p>
                         </div>
 
-                    </div>
+                    </div><!-- /journey-container -->
                 </div>
-            </section>
+            </section><!-- /journey -->
+            <!-- ── 02 SKILLS ── -->
             <section id="skills">
                 <span class="section-num">02</span>
 
                 <div class="grid grid-cols-12 gap-8 lg:gap-16">
 
-                    <!-- Left Side: Title -->
-                    <div class="col-span-12 lg:col-span-5 mb-12 lg:mb-0 lg:sticky lg:top-32 lg:h-fit">
-                        <h2 class="massive-text text-gradient leading-[0.8] !text-[clamp(3rem,12vw,7rem)] uppercase">
-                            CORE<br>
-                        </h2>
-                        <h2 class="massive-text outlined-text leading-[0.8] !text-[clamp(3rem,12vw,7rem)] uppercase">
-                            STACK
-                        </h2>
+                    <!-- Left: sticky title -->
+                    <div class="col-span-12 lg:col-span-5 lg:sticky lg:top-32 lg:h-fit">
+                        <h2 class="massive-text text-gradient leading-[0.8] uppercase">CORE<br></h2>
+                        <h2 class="massive-text outlined-text leading-[0.8] uppercase">STACK</h2>
                         <div class="mt-8 border-l-2 border-primary/20 pl-6">
-                            <p class="text-dim text-sm sm:text-base max-w-sm font-mono uppercase tracking-widest opacity-60">
+                            <p class="text-dim font-mono uppercase tracking-widest opacity-60">
                                 Technical competencies fueling development and innovation cycles.
                             </p>
                         </div>
                     </div>
 
-                    <!-- Right Side: Skills Grid -->
-                    <div class="col-span-12 lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-2" id="skills-container">
+                    <!-- Right: skills bento -->
+                    <div class="col-span-12 lg:col-span-7 grid grid-cols-1 gap-2" id="skills-container">
 
-                        <!-- HIGH IMPACT: Python & AI -->
                         <div class="lg:col-span-4 liquid-card p-4 reveal border-l-4 border-primary bg-primary/5">
                             <div class="flex justify-between items-start">
                                 <div class="font-black text-white tracking-tighter text-lg uppercase">
@@ -349,10 +366,9 @@
                                 </div>
                                 <i class="fa-solid fa-microchip text-primary/30 text-base"></i>
                             </div>
-                            <p class="text-dim/60 text-[10px] mt-3 leading-relaxed uppercase">Foundation for AI Research & Systems Engineering.</p>
+                            <p class="text-dim/60 text-[10px] mt-3 leading-relaxed uppercase">Foundation for AI Research &amp; Systems Engineering.</p>
                         </div>
 
-                        <!-- SYSTEM BLOCK: DBMS / DLD -->
                         <div class="lg:col-span-2 liquid-card p-4 reveal border border-white/5">
                             <div class="font-black text-white tracking-widest uppercase text-xs">
                                 DBMS / DLD
@@ -360,7 +376,6 @@
                             </div>
                         </div>
 
-                        <!-- WEB BLOCK -->
                         <div class="lg:col-span-3 liquid-card p-4 reveal border border-white/5">
                             <div class="font-black text-white tracking-widest uppercase text-xs">
                                 HTML5 / CSS / JS
@@ -368,15 +383,13 @@
                             </div>
                         </div>
 
-                        <!-- DATA BLOCK -->
                         <div class="lg:col-span-3 liquid-card p-4 reveal border border-white/5">
                             <div class="font-black text-white tracking-widest uppercase text-xs">
                                 SQL / Firebase
-                                <p class="text-dim mt-3 uppercase font-black tracking-widest text-[9px]">Cloud & Persistence</p>
+                                <p class="text-dim mt-3 uppercase font-black tracking-widest text-[9px]">Cloud &amp; Persistence</p>
                             </div>
                         </div>
 
-                        <!-- MATH BLOCK -->
                         <div class="lg:col-span-6 liquid-card p-4 reveal border-t border-primary/20 bg-white/[0.02]">
                             <div class="flex items-center gap-4">
                                 <div class="h-px flex-grow bg-white/10"></div>
@@ -388,54 +401,45 @@
                             <p class="text-center text-dim/40 text-[8px] uppercase mt-2 tracking-widest">Theoretical Computation Engine</p>
                         </div>
 
-                    </div>
+                    </div><!-- /skills-container -->
                 </div>
-            </section>
-
+            </section><!-- /skills -->
+            <!-- ── 03 PROJECTS ── -->
             <section id="projects">
                 <span class="section-num">03</span>
 
                 <div class="grid grid-cols-12 gap-8 lg:gap-16">
 
-                    <!-- Left: Title -->
-                    <div class="col-span-12 lg:col-span-5 mb-12 lg:mb-0 lg:sticky lg:top-32 lg:h-fit">
-                        <h2 class="massive-text text-gradient leading-[0.8] !text-[clamp(3rem,12vw,7rem)] uppercase">
-                            PRO
-                        </h2>
-                        <h2 class="massive-text outlined-text leading-[0.8] !text-[clamp(3rem,12vw,7rem)] uppercase">
-                            JECTS
-                        </h2>
+                    <!-- Left: sticky title -->
+                    <div class="col-span-12 lg:col-span-5 lg:sticky lg:top-32 lg:h-fit">
+                        <h2 class="massive-text text-gradient leading-[0.8] uppercase">PRO</h2>
+                        <h2 class="massive-text outlined-text leading-[0.8] uppercase">JECTS</h2>
                         <div class="mt-8 border-l-2 border-primary/20 pl-6">
-                            <p class="text-dim text-sm sm:text-base max-w-sm font-mono uppercase tracking-widest opacity-60">
-                                Engineered systems, interfaces & experiments in the wild.
+                            <p class="text-dim font-mono uppercase tracking-widest opacity-60">
+                                Engineered systems, interfaces &amp; experiments in the wild.
                             </p>
                         </div>
                     </div>
 
-                    <!-- Right: Project List -->
+                    <!-- Right: project list -->
                     <div class="col-span-12 lg:col-span-7" id="projects-container">
 
-                        <!-- Top rule -->
                         <div class="h-px w-full bg-white/10 mb-2"></div>
 
                         <!-- Project 01 -->
                         <a href="https://www.linkedin.com/in/muhammad-hamza-ziaa" target="_blank"
                            class="group flex items-center justify-between py-7 border-b border-white/10 hover:border-primary/20 transition-all duration-300 reveal">
-
                             <div class="flex items-start gap-6">
                                 <span class="text-[10px] font-black font-mono tracking-[0.3em] text-white/20 group-hover:text-primary/60 transition-colors pt-1">01</span>
                                 <div>
-                                    <h3 class="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white group-hover:text-primary transition-colors leading-none">
+                                    <h3 class="font-black uppercase tracking-tight text-white group-hover:text-primary transition-colors leading-none">
                                         Coming Soon
                                     </h3>
-                                    <p class="text-white/30 text-[10px] font-mono uppercase tracking-[0.25em] mt-2">
-                                        Stay tuned — LinkedIn
-                                    </p>
+                                    <p class="text-white/30 text-[10px] font-mono uppercase tracking-[0.25em] mt-2">Stay tuned — LinkedIn</p>
                                 </div>
                             </div>
-
                             <div class="flex items-center gap-4 shrink-0 ml-4">
-                                <span class="hidden sm:block text-[9px] font-black tracking-[0.3em] uppercase text-white/20 border border-white/10 group-hover:border-primary/20 group-hover:text-primary/50 px-3 py-1 transition-all">
+                                <span class="text-[9px] font-black tracking-[0.3em] uppercase text-white/20 border border-white/10 group-hover:border-primary/20 group-hover:text-primary/50 px-3 py-1 transition-all">
                                     Incoming
                                 </span>
                                 <div class="w-8 h-8 border border-white/10 group-hover:border-primary/30 flex items-center justify-center transition-all duration-300 translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100">
@@ -447,21 +451,17 @@
                         <!-- Project 02 -->
                         <a href="https://github.com/MuhammadHamzaZia" target="_blank"
                            class="group flex items-center justify-between py-7 border-b border-white/10 hover:border-primary/20 transition-all duration-300 reveal">
-
                             <div class="flex items-start gap-6">
                                 <span class="text-[10px] font-black font-mono tracking-[0.3em] text-white/20 group-hover:text-primary/60 transition-colors pt-1">02</span>
                                 <div>
-                                    <h3 class="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white group-hover:text-primary transition-colors leading-none">
+                                    <h3 class="font-black uppercase tracking-tight text-white group-hover:text-primary transition-colors leading-none">
                                         Explore GitHub
                                     </h3>
-                                    <p class="text-white/30 text-[10px] font-mono uppercase tracking-[0.25em] mt-2">
-                                        @MuhammadHamzaZia — Open Source
-                                    </p>
+                                    <p class="text-white/30 text-[10px] font-mono uppercase tracking-[0.25em] mt-2">@MuhammadHamzaZia — Open Source</p>
                                 </div>
                             </div>
-
                             <div class="flex items-center gap-4 shrink-0 ml-4">
-                                <span class="hidden sm:block text-[9px] font-black tracking-[0.3em] uppercase text-white/20 border border-white/10 group-hover:border-primary/20 group-hover:text-primary/50 px-3 py-1 transition-all">
+                                <span class="text-[9px] font-black tracking-[0.3em] uppercase text-white/20 border border-white/10 group-hover:border-primary/20 group-hover:text-primary/50 px-3 py-1 transition-all">
                                     Open Source
                                 </span>
                                 <div class="w-8 h-8 border border-white/10 group-hover:border-primary/30 flex items-center justify-center transition-all duration-300 translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100">
@@ -470,61 +470,67 @@
                             </div>
                         </a>
 
-                        <!-- Footer note -->
                         <p class="text-[9px] font-mono uppercase tracking-[0.35em] text-white/15 mt-6 text-right">
                             More shipping soon —
                         </p>
 
-                    </div>
+                    </div><!-- /projects-container -->
                 </div>
-            </section>
-
-            <section id="support">
+            </section><!-- /projects -->
+            <!-- ── 04 CONTACT ── -->
+            <section id="contact">
                 <span class="section-num">04</span>
-                <div class="max-w-5xl mx-auto text-center reveal">
+
+                <!-- heading block: gets section > * indent automatically -->
+                <div class="text-center reveal">
                     <h2 class="massive-text">INITIATE<br><span class="outlined-text">CONTACT</span></h2>
                     <p class="text-dim mt-4 uppercase font-black tracking-widest text-xs">Let's build something together</p>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
-                        <a href="contact.html"
-                           class="liquid-card p-10 group cursor-pointer border-primary/20 hover:border-primary transition-all">
-                            <i class="fa-solid fa-envelope text-5xl mb-6 text-primary group-hover:scale-110 transition-transform"></i>
-                            <h3 class="text-2xl font-black tracking-tighter">EMAIL ME</h3>
-                        </a>
-                        <a href="https://www.linkedin.com/in/muhammad-hamza-ziaa" target="_blank"
-                           class="liquid-card p-10 group border-secondary/20 hover:border-secondary transition-all">
-                            <i class="fa-brands fa-linkedin text-5xl mb-6 text-secondary group-hover:scale-110 transition-transform"></i>
-                            <h3 class="text-2xl font-black tracking-tighter">LINKEDIN</h3>
-                        </a>
-                    </div>
                 </div>
-            </section>
 
-
-            <section id="support" >
+                <!-- cards grid: also a direct child, gets section > * indent,
+                max-w keeps cards from stretching too wide on ultrawide -->
+                <div class="mt-16" style="
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+                    gap: clamp(1rem, 2vw, 1.5rem);
+                    max-width: 64rem;
+                    overflow: visible;
+                ">
+                    <a href="contact.html"
+                       class="liquid-card group cursor-pointer border-primary/20 hover:border-primary transition-all text-center">
+                        <i class="fa-solid fa-envelope mb-6 text-primary group-hover:scale-110 transition-transform"
+                           style="font-size:clamp(2rem,4vw,3.5rem);display:block;"></i>
+                        <h3 class="font-black tracking-tighter">EMAIL ME</h3>
+                    </a>
+                    <a href="https://www.linkedin.com/in/muhammad-hamza-ziaa" target="_blank"
+                       class="liquid-card group border-secondary/20 hover:border-secondary transition-all text-center">
+                        <i class="fa-brands fa-linkedin mb-6 text-secondary group-hover:scale-110 transition-transform"
+                           style="font-size:clamp(2rem,4vw,3.5rem);display:block;"></i>
+                        <h3 class="font-black tracking-tighter">LINKEDIN</h3>
+                    </a>
+                </div>
+            </section><!-- /contact -->
+            <!-- ── 05 SUPPORT ── -->
+            <section id="support">
                 <span class="section-num">05</span>
 
                 <div class="grid grid-cols-12 gap-8 lg:gap-16">
 
-                    <!-- Left: Title -->
-                    <div class="col-span-12 lg:col-span-5 mb-12 lg:mb-0 lg:sticky lg:top-32 lg:h-fit">
-                        <h2 class="massive-text text-gradient leading-[0.8] !text-[clamp(3rem,12vw,7rem)] uppercase">
-                            SUP<br>
-                        </h2>
-                        <h2 class="massive-text outlined-text leading-[0.8] !text-[clamp(3rem,12vw,7rem)] uppercase">
-                            PORT
-                        </h2>
+                    <!-- Left: sticky title -->
+                    <div class="col-span-12 lg:col-span-5 lg:sticky lg:top-32 lg:h-fit">
+                        <h2 class="massive-text text-gradient leading-[0.8] uppercase">SUP<br></h2>
+                        <h2 class="massive-text outlined-text leading-[0.8] uppercase">PORT</h2>
                         <div class="mt-8 border-l-2 border-primary/20 pl-6">
-                            <p class="text-dim text-sm sm:text-base max-w-sm font-mono uppercase tracking-widest opacity-60">
+                            <p class="text-dim font-mono uppercase tracking-widest opacity-60">
                                 If my work adds value — fuel the next build.
                             </p>
                         </div>
                     </div>
 
-                    <!-- Right: Support Options -->
+                    <!-- Right: payment options -->
                     <div class="col-span-12 lg:col-span-7 reveal">
 
-                        <!-- ── Local Payments ── -->
+                        <!-- Local Payments -->
                         <p class="text-[9px] font-black font-mono tracking-[0.4em] uppercase text-white/20 mb-2">Local Transfer</p>
                         <div class="h-px w-full bg-white/10 mb-2"></div>
 
@@ -534,12 +540,12 @@
                             <div class="flex items-start gap-6">
                                 <span class="text-[10px] font-black font-mono tracking-[0.3em] text-white/20 group-hover:text-primary/60 transition-colors pt-1">01</span>
                                 <div>
-                                    <h3 class="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white group-hover:text-primary transition-colors leading-none">JazzCash</h3>
+                                    <h3 class="font-black uppercase tracking-tight text-white group-hover:text-primary transition-colors leading-none">JazzCash</h3>
                                     <p class="text-white/30 text-[10px] font-mono uppercase tracking-[0.25em] mt-2">Mobile Wallet — PK</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-4 shrink-0 ml-4">
-                                <span class="hidden sm:block text-[9px] font-black tracking-[0.3em] uppercase text-white/20 border border-white/10 group-hover:border-primary/20 group-hover:text-primary/50 px-3 py-1 transition-all">
+                                <span class="text-[9px] font-black tracking-[0.3em] uppercase text-white/20 border border-white/10 group-hover:border-primary/20 group-hover:text-primary/50 px-3 py-1 transition-all">
                                     Wallet
                                 </span>
                                 <div class="w-8 h-8 border border-white/10 group-hover:border-primary/30 flex items-center justify-center transition-all duration-300 translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100">
@@ -554,12 +560,12 @@
                             <div class="flex items-start gap-6">
                                 <span class="text-[10px] font-black font-mono tracking-[0.3em] text-white/20 group-hover:text-primary/60 transition-colors pt-1">02</span>
                                 <div>
-                                    <h3 class="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white group-hover:text-primary transition-colors leading-none">Bank Alfalah</h3>
+                                    <h3 class="font-black uppercase tracking-tight text-white group-hover:text-primary transition-colors leading-none">Bank Alfalah</h3>
                                     <p class="text-white/30 text-[10px] font-mono uppercase tracking-[0.25em] mt-2">Bank Transfer — PK</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-4 shrink-0 ml-4">
-                                <span class="hidden sm:block text-[9px] font-black tracking-[0.3em] uppercase text-white/20 border border-white/10 group-hover:border-primary/20 group-hover:text-primary/50 px-3 py-1 transition-all">
+                                <span class="text-[9px] font-black tracking-[0.3em] uppercase text-white/20 border border-white/10 group-hover:border-primary/20 group-hover:text-primary/50 px-3 py-1 transition-all">
                                     Bank
                                 </span>
                                 <div class="w-8 h-8 border border-white/10 group-hover:border-primary/30 flex items-center justify-center transition-all duration-300 translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100">
@@ -568,7 +574,7 @@
                             </div>
                         </div>
 
-                        <!-- ── Crypto ── -->
+                        <!-- Crypto -->
                         <p class="text-[9px] font-black font-mono tracking-[0.4em] uppercase text-white/20 mt-12 mb-2">USDT / Crypto Wallets</p>
                         <div class="h-px w-full bg-white/10 mb-1"></div>
 
@@ -638,22 +644,23 @@
                             <i class="fa-solid fa-copy text-[10px] text-white/20 group-hover:text-primary transition-all duration-300"></i>
                         </div>
 
-                        <!-- Footer -->
+                        <!-- Footer hint -->
                         <div class="mt-10 flex items-center gap-4">
                             <div class="h-px flex-grow bg-white/5"></div>
                             <p class="text-[9px] font-mono uppercase tracking-[0.35em] text-white/15 shrink-0">Click any row to copy address</p>
                             <div class="h-px flex-grow bg-white/5"></div>
                         </div>
 
-                    </div>
+                    </div><!-- /payment options -->
                 </div>
-            </section>
-        </div>
+            </section><!-- /support -->
+
+        </div><!-- /elements -->
         <!-- Privacy Authorization Banner -->
         <div id="privacy-protocol"
-             class="fixed bottom-0 sm:bottom-12 left-0 right-0 sm:left-auto sm:right-12 z-[10000] hidden opacity-0 transition-all duration-700 transform translate-y-full sm:translate-y-10 px-4 pb-10 sm:p-0">
+             class="fixed bottom-0 left-0 right-0 sm:bottom-12 sm:left-auto sm:right-12 z-[10000] hidden opacity-0 transition-all duration-700 transform translate-y-full sm:translate-y-10 p-0">
 
-            <div class="bg-[#05050f]/95 backdrop-blur-2xl border-t sm:border border-primary/20 p-6 sm:p-5 sm:max-w-sm rounded-t-xl sm:rounded-sm shadow-[0_-10px_40px_rgba(0,0,0,0.5)] sm:shadow-[0_0_30px_rgba(143,245,255,0.1)]">
+            <div class="bg-[#05050f]/95 backdrop-blur-2xl border-t sm:border border-primary/20 p-6 sm:p-5 sm:max-w-sm rounded-t-xl sm:rounded-sm shadow-[0_-10px_40px_rgba(0,0,0,0.5)] sm:shadow-[0_0_30px_rgba(143,245,255,0.1)] w-full m-0">
                 <!-- Content remains the same -->
                 <div class="flex flex-col sm:flex-row items-start gap-4">
                     <div class="w-full">
@@ -677,16 +684,16 @@
             </div>
         </div>
 
-    </main>
-
-    <div id="qr-bank-modal" style="position: fixed; inset: 0px; z-index: 200; background: rgba(0, 0, 0, 0.9); display: none; align-items: center; justify-content: center; padding: 2rem;">
-        <div style="max-width:500px;background:#fff;padding:1rem;border-radius:1rem;position:relative;">
+    </main><!-- /main -->
+    <!-- ── QR Modal ── -->
+    <div id="qr-bank-modal" style="position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;padding:clamp(0.75rem,2vw,2rem);">
+        <div style="max-width:min(500px,calc(100vw - 1.5rem));width:100%;background:#fff;padding:1rem;border-radius:1rem;position:relative;">
             <button id="close-modal" style="position:absolute;top:-3rem;right:0;color:#fff;font-size:2rem;background:none;border:none;cursor:pointer;">×</button>
-
             <img src="" style="width:100%;height:auto;border-radius:0.5rem;" alt="Bank QR">
         </div>
     </div>
 
+    <!-- ══════════════════════════════════════════ FOOTER ══════════════════════════════════════════ -->
     <footer class="container py-24 flex flex-col items-center text-center">
         <div class="logo font-headline font-black text-3xl uppercase tracking-tighter text-white mb-4">
             MUHAMMAD HAMZA ZIA <span class="outlined-text !opacity-40">PORTFOLIO</span>
@@ -761,6 +768,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="three-effects.js"></script>
     <script src="script.js"></script>
-</body>
 
+</body>
 </html>
