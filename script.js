@@ -326,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollTargets.forEach(target => scanObserver.observe(target));
     }
 
-    // --- GLOBAL INITIALIZATION EXECUTION ---
+   // --- GLOBAL INITIALIZATION EXECUTION ---
     window.addEventListener('load', () => {
         const preloader = document.getElementById('system-preloader');
         if (preloader) {
@@ -339,16 +339,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Execute dynamic content builders
+    // Execute content assembly systems
     renderJourney();
     renderTools();
-    
-    // Core engine module assignments
     initModals();
     initCryptoCopy();
     initContactForm();
     initPrivacyProtocol();
-
-    // Fire the scroll tracking engine once page paintings settle inside DOM
-    setTimeout(initMobileHoverOnScroll, 150);
+    // initMobileHoverOnScroll deleted — structural lag cleared!
 });
