@@ -1,773 +1,823 @@
-<!DOCTYPE html>
-<html class="dark">
+/* ═══ VOID AURORA — Brutalist Design System ═══ */
 
-<head>
-    <meta name="google-site-verification" content="yFzTQfX-E_LJzmOZmukLwg1c2A1WBwlij1DCKSc32rM" />
-    <!-- Preconnect to Google Fonts for faster fetching -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+/* Lock root font size — prevents browser default (14px–18px variance)
+   from making rem-based clamp() values differ local vs deployed */
+html {
+    font-size: 16px;
+}
 
+:root {
+    --bg: #05050f;
+    --primary: #8ff5ff;
+    --secondary: #ac89ff;
+    --tertiary: #e9ffb9;
+    --accent-orange-glow: rgba(255, 157, 99, 0.15);
+    --text: #ffffff;
+    --dim: #f8fafc;
+    --sans: 'Space Grotesk', system-ui, sans-serif;
+    --headline: 'Plus Jakarta Sans', sans-serif;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.25);
+    --accent-glow: rgba(143, 245, 255, 0.25);
+    /* ─── Fluid spacing scale ─── */
+    --pad-x: clamp(1.25rem, 4vw, 5rem); /* min bumped: more right clearance on narrow phones */
+    --pad-section: clamp(7rem, 14vw, 14rem);
+    --pad-card: clamp(0.85rem, 2.5vw, 3rem); /* min reduced: more usable width inside cards on phones */
+    --pad-nav: clamp(0.6rem, 1vw, 1.25rem);
+    --pad-nav-x: clamp(0.75rem, 2.5vw, 3rem);
+}
 
-    <!-- Primary Meta Tags -->
-    <meta name="title" content="Muhammad Hamza Zia | AI Engineer & Project Manager">
-    <meta name="description" content="Portfolio of Muhammad Hamza Zia, a BS Artificial Intelligence student at UCP Lahore. focusing on machine learning, data science, robotics, and neural networks to create intelligent systems. Specializing in Scalable AI Projects, Full Stack Development, AI integration and Project Management.">
-    <meta name="keywords" content="Muhammad Hamza Zia,Entrepreneur, AI Engineer Lahore, Full Stack Developer Pakistan,Bachelor of Artificial Intelligence ,BS AI, UCP student,AI expert">
-    <meta name="author" content="Muhammad Hamza Zia">
-    <meta name="robots" content="index, follow">
+/* ─── Reset ─── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: default !important;
+}
 
-    <!-- Open Graph / Facebook (For social sharing) -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://muhammadhamzazia.github.io/PORTFOLIO/">
-    <meta property="og:title" content="Muhammad Hamza Zia | AI Engineer & Project Manager">
-    <meta property="og:description" content="Building Saas Systems and AI-driven solutions. Explore the journey of Muhammad Hamza Zia.">
-    <meta property="og:image" content="https://yourdomain.com/icon.jpg">
-    <meta property="og:site_name" content="Hamza Zia Portfolio">
+/* clip prevents horizontal scrollbar without creating a stacking
+   context that clips box-shadow glow near viewport edges */
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    overflow-x: clip;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+}
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://muhammadhamzazia.github.io/PORTFOLIO/">
-    <meta property="twitter:title" content="Muhammad Hamza Zia | AI Engineer & Project Manager">
-    <meta property="twitter:description" content="BS AI student at UCP focusing on machine learning, data science, robotics, and neural networks to create intelligent systems.">
-    <meta property="twitter:image" content="https://yourdomain.com/icon.jpg">
+/* ─── WebGL Canvas ─── */
+#particles-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+}
 
-    <!-- for LLMs -->
-    <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "Person",
-              "@id": "https://github.com/MuhammadHamzaZia#person",
-              "name": "Muhammad Hamza Zia",
-              "url": "https://muhammadhamzazia.github.io/PORTFOLIO/",
-              "jobTitle": "AI Engineer & Project Manager",
-              "affiliation": {
-                "@type": "CollegeOrUniversity",
-                "name": "University of Central Punjab",
-                "alternateName": "UCP",
-                "location": {
-                  "@type": "Place",
-                  "address": {
-                    "@type": "PostalAddress",
-                    "addressLocality": "Lahore",
-                    "addressCountry": "PK"
-                  }
-                }
-              },
-              "knowsAbout": [
-                "Artificial Intelligence",
-                "Machine Learning",
-                "Neural Networks",
-                "Full Stack Development",
-                "Project Management",
-                "SaaS Systems"
-              ],
-              "sameAs": [
-                "https://github.com/MuhammadHamzaZia",
-                "https://www.linkedin.com/in/muhammad-hamza-ziaa",
-                "https://web.facebook.com/MuhammadHamzaziia",
-                "https://www.instagram.com/muhammad_hamza_ziaa/"
-              ]
-            },
-            {
-              "@type": "WebSite",
-              "@id": "https://muhammadhamzazia.github.io/PORTFOLIO/",
-              "url": "https://muhammadhamzazia.github.io/PORTFOLIO/",
-              "name": "Muhammad Hamza Zia Portfolio",
-              "description": "Portfolio of Muhammad Hamza Zia, an AI Engineer and Project Manager specializing in scalable AI systems, machine learning, and full-stack development.",
-              "publisher": {
-                "@id": "https://muhammadhamzazia.github.io/PORTFOLIO/"
-              }
-            },
-            {
-              "@type": "ItemList",
-              "name": "Site Navigation",
-              "description": "Main sections of Muhammad Hamza Zia's portfolio website",
-              "itemListElement": [
-                {
-                  "@type": "SiteNavigationElement",
-                  "position": 1,
-                  "name": "Professional Journey",
-                  "url": "https://muhammadhamzazia.github.io/PORTFOLIO/#journey"
-                },
-                {
-                  "@type": "SiteNavigationElement",
-                  "position": 2,
-                  "name": "Core Technical Stack",
-                  "url": "https://muhammadhamzazia.github.io/PORTFOLIO/#skills"
-                },
-                {
-                  "@type": "SiteNavigationElement",
-                  "position": 3,
-                  "name": "AI & Software Projects",
-                  "url": "https://muhammadhamzazia.github.io/PORTFOLIO/#projects"
-                },
-                {
-                  "@type": "SiteNavigationElement",
-                  "position": 4,
-                  "name": "Initiate Contact",
-                  "url": "https://muhammadhamzazia.github.io/PORTFOLIO/#contact"
-                }
-              ]
-            }
-          ]
+/* ─── Layout ─── */
+.container {
+    max-width: 1680px;
+    margin: 0 auto;
+    padding: 0; /* no side padding — each child handles its own indent */
+    overflow: visible;
+}
+
+.elements {
+    overflow: visible;
+}
+
+/* ─── Typography ─── */
+h1, h2, h3 {
+    font-family: var(--headline);
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+}
+
+/* massive-text: fluid ~1.58rem (tiny phone) → 8.55rem (wide monitor) */
+.massive-text {
+    font-size: clamp(1.575rem, 1.575rem + 7.1vw, 8.55rem);
+    line-height: 0.95;
+    font-weight: 900;
+    padding: 0.2em 0.05em;
+    overflow: visible;
+    /* prevent right bleed on narrow phones */
+    max-width: 100%;
+    word-break: break-word;
+}
+
+.outlined-text {
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.6);
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    letter-spacing: 0.07em;
+}
+
+    .outlined-text:hover {
+        -webkit-text-stroke: 2px var(--primary);
+        color: rgba(143, 245, 255, 0.1);
+        text-shadow: 0 0 40px var(--primary);
+    }
+
+/* ─── Section number watermark ─── */
+.section-num {
+    font-family: var(--headline);
+    font-size: clamp(3.6rem, 1.1rem + 10.35vw, 13.5rem);
+    font-weight: 950;
+    opacity: 0.50;
+    position: absolute;
+    /* sits inside top padding on mobile; floats slightly above on wide screens */
+    top: clamp(0.5rem, -0.5rem + 2vw, -3rem);
+    left: clamp(0rem, -0.5vw, -1.5rem);
+    pointer-events: none;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.3);
+    color: silver;
+    filter: blur(1px);
+    padding-left: 20px;
+    max-width: 100vw;
+    overflow: visible;
+    z-index: 10;
+}
+
+/* ─── Glass Cards ─── */
+.liquid-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(30px) saturate(2.5);
+    border-radius: 6px;
+    padding: var(--pad-card);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+}
+
+    .liquid-card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        opacity: 0.3;
+    }
+
+    .liquid-card:hover {
+        border-color: var(--primary);
+        transform: translateY(clamp(-5px, -0.6vw, -10px)) scale(clamp(1.005, 1.002 + 0.001 * 1vw, 1.02));
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(143,245,255,0.1);
+    }
+
+    .liquid-card::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(143,245,255,0.05) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity 0.4s;
+        pointer-events: none;
+    }
+
+    .liquid-card:hover::before {
+        opacity: 1;
+    }
+
+/* ─── NAVIGATION ─── */
+nav {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    /* edges align with section > * margin so nav lines up with content */
+    width: min(calc(100% - var(--pad-x) * 2), 1680px);
+    max-width: 1680px;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--pad-nav) var(--pad-nav-x);
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 0 0 14px 14px;
+}
+
+    nav .logo {
+        font-family: var(--headline);
+        font-weight: 900;
+        font-size: clamp(0.72rem, 0.5rem + 1.2vw, 2rem);
+        text-transform: uppercase;
+        letter-spacing: -0.04em;
+        color: #fff;
+        line-height: 1.4;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+.nav-links {
+    display: flex;
+    gap: clamp(0.6rem, 2vw, 2rem);
+    align-items: center;
+}
+
+    .nav-links a {
+        text-decoration: none;
+        color: #fff;
+        font-size: clamp(0.7rem, 0.4rem + 0.7vw, 0.85rem);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        opacity: 0.7;
+        transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+        .nav-links a:hover {
+            opacity: 1;
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
         }
-    </script>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>MUHAMMAD HAMZA ZIA | PORTFOLIO</title>
-    <!-- This is the line that adds the favicon -->
-    <link rel="icon" type="image/png" href="icon.jpg" alt="Muhammad Hamza Zia - AI Engineer Profile Picture">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-    <script>
-        tailwind.config = {
-        darkMode: "class",
-        theme: {
-        extend: {
-        colors: {
-        "primary": "#8ff5ff",
-        "secondary": "#ac89ff",
-        "tertiary": "#e9ffb9",
-        "dim": "#d8dee9"
+
+@media (max-width: 520px) {
+    .nav-links > a[href^="#"] {
+        display: none;
+    }
+}
+
+.nav-links .hidden.xl\:flex {
+    display: none;
+}
+
+@media (min-width: 1280px) {
+    .nav-links .hidden.xl\:flex {
+        display: flex;
+    }
+}
+
+/* ─── HERO ─── */
+#hero {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    padding-top: clamp(4.5rem, 2rem + 5vw, 10rem);
+    padding-bottom: clamp(2rem, 3vw, 4rem);
+    /* full width — hero-content child handles the side indent */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    margin-left: var(--pad-x);
+    margin-right: var(--pad-x);
+    /* hard right boundary — nothing escapes past margin on narrow phones */
+    max-width: calc(100% - var(--pad-x) * 2);
+    min-width: 0;
+    overflow-x: clip;
+}
+
+.hero-subtitle {
+    font-size: clamp(0.7rem, 0.5rem + 0.5vw, 1rem);
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+#hero h1 {
+    font-size: clamp(1.17rem, 0.81rem + 3.15vw, 3.51rem);
+}
+
+#hero .massive-text {
+    font-size: clamp(1.575rem, 0.81rem + 9.45vw, 8.55rem);
+}
+
+#hero p#static-bio {
+    font-size: clamp(0.9rem, 0.75rem + 0.5vw, 1.25rem);
+    line-height: 1.55;
+}
+
+#hero .reveal.mt-8.flex {
+    flex-wrap: wrap;
+    gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+    #hero .reveal.mt-8.flex a {
+        font-size: clamp(0.85rem, 0.6rem + 0.6vw, 1.125rem);
+    }
+
+#hero .massive-text > span[data-translate="heroLine1"] {
+    color: #d4bfff;
+}
+
+/* ─── LinkedIn Card ─── */
+.linkdin-card {
+    position: absolute;
+    right: 0.2rem;
+    top: 2rem;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+    .linkdin-card {
+        position: relative;
+        top: 0;
+        right: 0;
+        margin-top: clamp(1rem, 2vw, 2rem);
+        display: flex;
+        justify-content: center;
+    }
+}
+
+/* ─── SECTIONS ─── */
+section {
+    padding: var(--pad-section) 0;
+    position: relative;
+    overflow: visible;
+    /* NO overflow-x: clip  — would crop horizontal glows */
+    /* NO isolation: isolate — would create a stacking cage */
+    /* NO margin-left/right — indent lives on direct children */
+}
+
+    /* Every direct child gets the side indent.
+   Section box stays full-width so glows bleed freely past edges.
+   min-width:0 prevents flex/grid children from overflowing right. */
+    section > * {
+        margin-left: var(--pad-x);
+        margin-right: var(--pad-x);
+        min-width: 0;
+        max-width: calc(100% - var(--pad-x) * 2);
+        box-sizing: border-box;
+    }
+
+    /* section-num is absolute — must NOT inherit the child indent */
+    section > .section-num {
+        margin-left: 0;
+        margin-right: 0;
+        max-width: none;
+    }
+
+    /* Grid wrappers inside sections: must not overflow their container */
+    section .grid {
+        min-width: 0;
+        overflow: visible;
+    }
+
+/* On small phones, grid-cols-12 causes right overflow.
+   Force single column below 768px, let lg: classes handle wider. */
+@media (max-width: 767px) {
+    section .grid.grid-cols-12 {
+        grid-template-columns: 1fr !important;
+        gap: clamp(1.5rem, 4vw, 2rem) !important;
+    }
+        /* col-span classes mean nothing in 1-col grid — reset them */
+        section .grid.grid-cols-12 > * {
+            grid-column: 1 / -1 !important;
         }
+}
+
+#projects, #support {
+    content-visibility: auto;
+    contain-intrinsic-size: 800px;
+}
+
+/* ─── Asymmetric Grid ─── */
+.asymmetric-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: clamp(1rem, 2vw, 2rem);
+}
+
+/* ─── UTILS ─── */
+.text-gradient {
+    background-image: linear-gradient(135deg, #8ff5ff 0%, #b8a4ff 100%);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: none;
+}
+
+.mt-large {
+    margin-top: clamp(3rem, 5vw, 6rem);
+}
+
+.mb-large {
+    margin-bottom: clamp(3rem, 5vw, 6rem);
+}
+
+/* ─── ANIMATIONS ─── */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+}
+
+    .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+/* ─── Tools Grid ─── */
+#tools-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+    gap: clamp(0.75rem, 1.5vw, 1.5rem);
+    margin-top: clamp(2rem, 4vw, 4rem);
+}
+
+.scroll-item {
+    width: 100%;
+    min-width: 0;
+}
+
+    .scroll-item .liquid-card {
+        padding: clamp(1rem, 1.5vw, 1.5rem);
+        gap: clamp(0.75rem, 1.5vw, 1.5rem) !important;
+    }
+
+        .scroll-item .liquid-card > div:first-child {
+            width: clamp(3rem, 4vw + 1rem, 5rem) !important;
+            height: clamp(3rem, 4vw + 1rem, 5rem) !important;
+            padding: clamp(0.4rem, 0.5vw, 0.75rem) !important;
+            flex-shrink: 0;
         }
+
+        .scroll-item .liquid-card h3 {
+            font-size: clamp(0.875rem, 0.75rem + 0.5vw, 1.25rem) !important;
+            line-height: 1.2;
         }
+
+/* ─── Journey container ─── */
+#journey-container .whitespace-nowrap {
+    white-space: normal;
+    font-size: clamp(1.25rem, 1rem + 1.5vw, 2.5rem) !important;
+}
+
+#journey-container h3 {
+    font-size: clamp(1.1rem, 0.9rem + 1vw, 2rem) !important;
+}
+
+#journey-container {
+    padding: 0 0.25rem;
+    overflow: visible;
+    min-width: 0;
+}
+    /* Journey/Support/Projects flex rows: wrap and constrain on mobile */
+    #journey-container .flex,
+    #projects-container .flex,
+    #support .flex {
+        flex-wrap: wrap;
+        min-width: 0;
+    }
+        /* Badge/tag pill rows: shrink on very small phones */
+        #journey-container .flex.items-start.gap-6,
+        #support .flex.items-start.gap-6 {
+            gap: clamp(0.5rem, 2vw, 1.5rem);
         }
-    </script>
-</head>
-
-
-<body>
-
-    <!-- ── Preloader ── -->
-    <div id="system-preloader" class="fixed inset-0 z-[9999] bg-[#05050f] flex flex-col items-center justify-center transition-opacity duration-700">
-        <div class="unselectable font-headline font-black text-2xl uppercase tracking-tighter text-white mb-6 animate-pulse">
-            SYSTEM <span class="outlined-text">INITIALIZING</span>
-        </div>
-        <div class="w-64 h-1 bg-white/10 relative overflow-hidden rounded-full">
-            <div class="custom-loading-bar absolute top-0 left-0 h-full w-1/2 bg-primary shadow-[0_0_15px_#8ff5ff]"></div>
-        </div>
-    </div>
-
-    <!-- ── Welcome Back Overlay ── -->
-    <div id="welcome-overlay" class="fixed inset-0 z-[9998] bg-[#05050f]/80 backdrop-blur-md flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-1000">
-        <div class="text-center">
-            <div class="text-primary unselectable font-mono text-[10px] tracking-[0.4em] mb-2 animate-pulse uppercase">Link Established</div>
-            <h2 id="welcome-message-text" class="unselectable massive-text text-white font-black uppercase tracking-tighter"></h2>
-            <div class="unselectable mt-4 text-dim/40 font-mono text-[8px] uppercase tracking-widest">Resuming Session...</div>
-        </div>
-    </div>
-
-    <canvas id="particles-canvas"></canvas>
-
-    <!-- ── Navigation ── -->
-    <nav>
-        <div class="logo font-headline font-black uppercase tracking-tighter text-white">
-            MUHAMMAD HAMZA ZIA <span class="outlined-text">PORTFOLIO</span>
-        </div>
-        <div class="nav-links flex items-center">
-            <a href="#journey">Journey</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <!-- Social icons: shown at 1280px+ via CSS -->
-            <div class="hidden xl:flex gap-3 ml-12 border-l border-white/10 pl-8 items-center">
-                <a href="https://github.com/MuhammadHamzaZia" target="_blank" title="GitHub">
-                    <i class="fa-brands fa-github text-dim hover:text-primary transition-colors"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/muhammad-hamza-ziaa" target="_blank" title="LinkedIn">
-                    <i class="fa-brands fa-linkedin text-dim hover:text-primary transition-colors"></i>
-                </a>
-                <a href="contact.html" title="Email">
-                    <i class="fa-solid fa-envelope text-dim hover:text-primary transition-colors"></i>
-                </a>
-                <a href="https://wa.me/923294515804" target="_blank" title="WhatsApp">
-                    <i class="fa-brands fa-whatsapp text-dim hover:text-primary transition-colors"></i>
-                </a>
-                <a href="https://www.instagram.com/muhammad_hamza_ziaa/" target="_blank" title="Instagram">
-                    <i class="fa-brands fa-instagram text-dim hover:text-primary transition-colors"></i>
-                </a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- ══════════════════════════════════════════ MAIN ══════════════════════════════════════════ -->
-    <main class="container">
-
-        <!-- ── HERO ── -->
-        <section id="hero">
-            <div class="hero-content">
-
-                <div class="mb-6 reveal">
-                    <span class="text-xs font-black tracking-[0.3em] uppercase opacity-50 text-white">
-                        Student &amp; Aspiring AI Engineer
-                    </span>
-                    <h1 class="font-black mt-2 text-white">MUHAMMAD HAMZA ZIA</h1>
-                </div>
-
-                <span class="hero-subtitle reveal font-bold tracking-widest uppercase">
-                    BS ARTIFICIAL INTELLIGENCE @ UCP | PROJECT MANAGER
-                </span>
-
-                <h2 class="massive-text reveal mt-4" style="transition-delay:0.1s;">
-                    <span>BUILDING</span><br>
-                    <span class="outlined-text">SCALABLE</span><br>
-                    <span class="text-gradient">SYSTEMS</span>
-                </h2>
-
-                <!-- LinkedIn badge: absolute on wide, flows inline on narrow (CSS handles it) -->
-                <div class="linkdin-card">
-                    <div class="badge-base LI-profile-badge"
-                         data-locale="en_US" data-size="large" data-theme="dark"
-                         data-type="HORIZONTAL" data-vanity="muhammad-hamza-ziaa" data-version="v1">
-                        <a class="badge-base__link LI-simple-link"
-                           href="https://pk.linkedin.com/in/muhammad-hamza-ziaa?trk=profile-badge"></a>
-                    </div>
-                </div>
-
-                <div class="reveal mt-8 max-w-4xl" style="transition-delay:0.3s;">
-                    <p class="font-body text-white/90 leading-relaxed drop-shadow-lg" id="static-bio">
-                        Motivated project manager and developer currently pursuing a BS in Artificial Intelligence.
-                        Skilled in organizing tasks, solving complex problems, and connecting technical frameworks
-                        with practical needs to build robust SaaS platforms and effective web solutions.
-                    </p>
-                </div>
-
-                <div class="reveal mt-8 flex gap-6" style="transition-delay:0.4s;">
-                    <a href="#journey" class="font-bold uppercase tracking-widest hover:text-primary transition-all">Explore Experience →</a>
-                    <a href="https://github.com/MuhammadHamzaZia" target="_blank"
-                       class="outlined-text font-bold uppercase tracking-widest hover:text-primary transition-all">GitHub Profile</a>
-                </div>
-
-            </div>
-        </section><!-- /hero -->
-        <!-- ══ SECTIONS WRAPPER ══ -->
-        <div class="elements">
-
-            <!-- ── 01 JOURNEY ── -->
-            <section id="journey">
-                <span class="section-num">01</span>
-
-                <div class="grid grid-cols-12 gap-8 lg:gap-16">
-
-                    <!-- Left: sticky title -->
-                    <div class="col-span-12 lg:col-span-4 lg:sticky lg:top-32 lg:h-fit">
-                        <h3 class="massive-text outlined-text leading-[0.8] uppercase">
-                            JO<br>URN<br>EY
-                        </h3>
-                        <div class="mt-8 border-l-2 border-primary/20 pl-6">
-                            <p class="text-dim font-mono uppercase tracking-widest opacity-60">
-                                Mapping of professional and academic evolution.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Right: cards -->
-                    <div class="col-span-12 lg:col-span-8 space-y-6" id="journey-container">
-
-                        <!-- Card 1: Education -->
-                        <div class="liquid-card reveal border border-white/5 hover:border-primary/10 transition-all group">
-                            <div class="flex flex-wrap items-start justify-between gap-4 mb-6">
-                                <div>
-                                    <h3 class="font-black tracking-tighter text-white group-hover:text-primary transition-colors">
-                                        BS ARTIFICIAL INTELLIGENCE
-                                    </h3>
-                                    <p class="text-secondary font-black uppercase tracking-[0.2em] text-xs mt-2">
-                                        University of Central Punjab
-                                    </p>
-                                </div>
-                                <span class="text-primary font-mono text-[10px] font-black tracking-[0.3em] uppercase bg-primary/5 px-3 py-1 border border-primary/10 rounded-full h-fit">
-                                    Sept 2024 — Present
-                                </span>
-                            </div>
-                            <p class="text-dim/70 leading-relaxed font-body max-w-2xl">
-                                Currently in my 4th semester. Relevant coursework includes advanced software development and data analysis.
-                                Focusing on machine learning, data science, robotics, and neural networks to create intelligent systems.
-                            </p>
-                        </div>
-
-                        <!-- Card 2: Internship -->
-                        <div class="liquid-card reveal border border-white/5 hover:border-primary/10 transition-all group">
-                            <div class="flex flex-wrap items-start justify-between gap-4 mb-6">
-                                <div>
-                                    <h3 class="font-black tracking-tighter text-white group-hover:text-primary transition-colors">
-                                        WEB DEVELOPER (INTERN)
-                                    </h3>
-                                    <p class="text-secondary font-black uppercase tracking-[0.2em] text-xs mt-2">
-                                        DevXcript (Remote)
-                                    </p>
-                                </div>
-                                <span class="text-primary font-mono text-[10px] font-black tracking-[0.3em] uppercase bg-primary/5 px-3 py-1 border border-primary/10 rounded-full h-fit">
-                                    Summer 2025
-                                </span>
-                            </div>
-                            <p class="text-dim/70 leading-relaxed font-body max-w-2xl">
-                                Working on mid-sized web projects to provide professional services for individuals and business clients.
-                            </p>
-                        </div>
-
-                        <!-- Card 3: Business -->
-                        <div class="liquid-card reveal border border-white/5 hover:border-primary/10 transition-all group">
-                            <div class="flex flex-wrap items-start justify-between gap-4 mb-6">
-                                <div>
-                                    <h3 class="font-black tracking-tighter text-white group-hover:text-primary transition-colors">
-                                        ONLINE STORE MANAGEMENT
-                                    </h3>
-                                    <p class="text-secondary font-black uppercase tracking-[0.2em] text-xs mt-2">
-                                        E-commerce Manager | Entrepreneurial
-                                    </p>
-                                </div>
-                                <span class="text-primary font-mono text-[10px] font-black tracking-[0.3em] uppercase bg-primary/5 px-3 py-1 border border-primary/10 rounded-full h-fit">
-                                    EXPERIENCED
-                                </span>
-                            </div>
-                            <div class="mb-4">
-                                <span class="text-[9px] font-black tracking-[0.4em] uppercase py-1 px-2 bg-white/5 text-white/50 rounded-sm">
-                                    END-TO-END
-                                </span>
-                            </div>
-                            <p class="text-dim/70 leading-relaxed font-body max-w-2xl">
-                                Handling all operations dealings, taxes, and deliveries for my online store served as a real world MBA,
-                                teaching me how to build brand and business systems, communicate effectively and solve complex problems.
-                            </p>
-                        </div>
-
-                    </div><!-- /journey-container -->
-                </div>
-            </section><!-- /journey -->
-            <!-- ── 02 SKILLS ── -->
-            <section id="skills">
-                <span class="section-num">02</span>
-
-                <div class="grid grid-cols-12 gap-8 lg:gap-16">
-
-                    <!-- Left: sticky title -->
-                    <div class="col-span-12 lg:col-span-5 lg:sticky lg:top-32 lg:h-fit">
-                        <h2 class="massive-text text-gradient leading-[0.8] uppercase">CORE<br></h2>
-                        <h2 class="massive-text outlined-text leading-[0.8] uppercase">STACK</h2>
-                        <div class="mt-8 border-l-2 border-primary/20 pl-6">
-                            <p class="text-dim font-mono uppercase tracking-widest opacity-60">
-                                Technical competencies fueling development and innovation cycles.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Right: skills bento -->
-                    <div class="col-span-12 lg:col-span-7 grid grid-cols-1 gap-2" id="skills-container">
-
-                        <div class="lg:col-span-4 liquid-card p-4 reveal border-l-4 border-primary bg-primary/5">
-                            <div class="flex justify-between items-start">
-                                <div class="font-black text-white tracking-tighter text-lg uppercase">
-                                    Python / C++
-                                    <p class="text-primary mt-1 uppercase font-black tracking-[0.4em] text-[9px]">Primary Logic Systems</p>
-                                </div>
-                                <i class="fa-solid fa-microchip text-primary/30 text-base"></i>
-                            </div>
-                            <p class="text-dim/60 text-[10px] mt-3 leading-relaxed uppercase">Foundation for AI Research &amp; Systems Engineering.</p>
-                        </div>
-
-                        <div class="lg:col-span-2 liquid-card p-4 reveal border border-white/5">
-                            <div class="font-black text-white tracking-widest uppercase text-xs">
-                                DBMS / DLD
-                                <p class="text-secondary mt-3 uppercase font-black tracking-widest text-[9px]">Architecture</p>
-                            </div>
-                        </div>
-
-                        <div class="lg:col-span-3 liquid-card p-4 reveal border border-white/5">
-                            <div class="font-black text-white tracking-widest uppercase text-xs">
-                                HTML5 / CSS / JS
-                                <p class="text-dim mt-3 uppercase font-black tracking-widest text-[9px]">Frontend Stack</p>
-                            </div>
-                        </div>
-
-                        <div class="lg:col-span-3 liquid-card p-4 reveal border border-white/5">
-                            <div class="font-black text-white tracking-widest uppercase text-xs">
-                                SQL / Firebase
-                                <p class="text-dim mt-3 uppercase font-black tracking-widest text-[9px]">Cloud &amp; Persistence</p>
-                            </div>
-                        </div>
-
-                        <div class="lg:col-span-6 liquid-card p-4 reveal border-t border-primary/20 bg-white/[0.02]">
-                            <div class="flex items-center gap-4">
-                                <div class="h-px flex-grow bg-white/10"></div>
-                                <div class="font-black text-white tracking-[0.5em] uppercase text-[10px] whitespace-nowrap">
-                                    Calculus / Discrete / Stats
-                                </div>
-                                <div class="h-px flex-grow bg-white/10"></div>
-                            </div>
-                            <p class="text-center text-dim/40 text-[8px] uppercase mt-2 tracking-widest">Theoretical Computation Engine</p>
-                        </div>
-
-                    </div><!-- /skills-container -->
-                </div>
-            </section><!-- /skills -->
-            <!-- ── 03 PROJECTS ── -->
-            <section id="projects">
-                <span class="section-num">03</span>
-
-                <div class="grid grid-cols-12 gap-8 lg:gap-16">
-
-                    <!-- Left: sticky title -->
-                    <div class="col-span-12 lg:col-span-5 lg:sticky lg:top-32 lg:h-fit">
-                        <h2 class="massive-text text-gradient leading-[0.8] uppercase">PRO</h2>
-                        <h2 class="massive-text outlined-text leading-[0.8] uppercase">JECTS</h2>
-                        <div class="mt-8 border-l-2 border-primary/20 pl-6">
-                            <p class="text-dim font-mono uppercase tracking-widest opacity-60">
-                                Engineered systems, interfaces &amp; experiments in the wild.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Right: project list -->
-                    <div class="col-span-12 lg:col-span-7" id="projects-container">
-
-                        <div class="h-px w-full bg-white/10 mb-2"></div>
-
-                        <!-- Project 01 -->
-                        <a href="https://www.linkedin.com/in/muhammad-hamza-ziaa" target="_blank"
-                           class="group flex items-center justify-between py-7 border-b border-white/10 hover:border-primary/20 transition-all duration-300 reveal">
-                            <div class="flex items-start gap-6">
-                                <span class="text-[10px] font-black font-mono tracking-[0.3em] text-white/20 group-hover:text-primary/60 transition-colors pt-1">01</span>
-                                <div>
-                                    <h3 class="font-black uppercase tracking-tight text-white group-hover:text-primary transition-colors leading-none">
-                                        Coming Soon
-                                    </h3>
-                                    <p class="text-white/30 text-[10px] font-mono uppercase tracking-[0.25em] mt-2">Stay tuned — LinkedIn</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4 shrink-0 ml-4">
-                                <span class="text-[9px] font-black tracking-[0.3em] uppercase text-white/20 border border-white/10 group-hover:border-primary/20 group-hover:text-primary/50 px-3 py-1 transition-all">
-                                    Incoming
-                                </span>
-                                <div class="w-8 h-8 border border-white/10 group-hover:border-primary/30 flex items-center justify-center transition-all duration-300 translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100">
-                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-primary"></i>
-                                </div>
-                            </div>
-                        </a>
-
-                        <!-- Project 02 -->
-                        <a href="https://github.com/MuhammadHamzaZia" target="_blank"
-                           class="group flex items-center justify-between py-7 border-b border-white/10 hover:border-primary/20 transition-all duration-300 reveal">
-                            <div class="flex items-start gap-6">
-                                <span class="text-[10px] font-black font-mono tracking-[0.3em] text-white/20 group-hover:text-primary/60 transition-colors pt-1">02</span>
-                                <div>
-                                    <h3 class="font-black uppercase tracking-tight text-white group-hover:text-primary transition-colors leading-none">
-                                        Explore GitHub
-                                    </h3>
-                                    <p class="text-white/30 text-[10px] font-mono uppercase tracking-[0.25em] mt-2">@MuhammadHamzaZia — Open Source</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4 shrink-0 ml-4">
-                                <span class="text-[9px] font-black tracking-[0.3em] uppercase text-white/20 border border-white/10 group-hover:border-primary/20 group-hover:text-primary/50 px-3 py-1 transition-all">
-                                    Open Source
-                                </span>
-                                <div class="w-8 h-8 border border-white/10 group-hover:border-primary/30 flex items-center justify-center transition-all duration-300 translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100">
-                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-primary"></i>
-                                </div>
-                            </div>
-                        </a>
-
-                        <p class="text-[9px] font-mono uppercase tracking-[0.35em] text-white/15 mt-6 text-right">
-                            More shipping soon —
-                        </p>
-
-                    </div><!-- /projects-container -->
-                </div>
-            </section><!-- /projects -->
-            <!-- ── 04 CONTACT ── -->
-            <section id="contact">
-                <span class="section-num">04</span>
-
-                <!-- heading block: gets section > * indent automatically -->
-                <div class="text-center reveal">
-                    <h2 class="massive-text">INITIATE<br><span class="outlined-text">CONTACT</span></h2>
-                    <p class="text-dim mt-4 uppercase font-black tracking-widest text-xs">Let's build something together</p>
-                </div>
-
-                <!-- cards grid: also a direct child, gets section > * indent,
-                max-w keeps cards from stretching too wide on ultrawide -->
-                <div class="mt-16" style="
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-                    gap: clamp(1rem, 2vw, 1.5rem);
-                    max-width: 64rem;
-                    overflow: visible;
-                ">
-                    <a href="contact.html"
-                       class="liquid-card group cursor-pointer border-primary/20 hover:border-primary transition-all text-center">
-                        <i class="fa-solid fa-envelope mb-6 text-primary group-hover:scale-110 transition-transform"
-                           style="font-size:clamp(2rem,4vw,3.5rem);display:block;"></i>
-                        <h3 class="font-black tracking-tighter">EMAIL ME</h3>
-                    </a>
-                    <a href="https://www.linkedin.com/in/muhammad-hamza-ziaa" target="_blank"
-                       class="liquid-card group border-secondary/20 hover:border-secondary transition-all text-center">
-                        <i class="fa-brands fa-linkedin mb-6 text-secondary group-hover:scale-110 transition-transform"
-                           style="font-size:clamp(2rem,4vw,3.5rem);display:block;"></i>
-                        <h3 class="font-black tracking-tighter">LINKEDIN</h3>
-                    </a>
-                </div>
-            </section><!-- /contact -->
-            <!-- ── 05 SUPPORT ── -->
-            <section id="support">
-                <span class="section-num">05</span>
-
-                <div class="grid grid-cols-12 gap-8 lg:gap-16">
-
-                    <!-- Left: sticky title -->
-                    <div class="col-span-12 lg:col-span-5 lg:sticky lg:top-32 lg:h-fit">
-                        <h2 class="massive-text text-gradient leading-[0.8] uppercase">SUP<br></h2>
-                        <h2 class="massive-text outlined-text leading-[0.8] uppercase">PORT</h2>
-                        <div class="mt-8 border-l-2 border-primary/20 pl-6">
-                            <p class="text-dim font-mono uppercase tracking-widest opacity-60">
-                                If my work adds value — fuel the next build.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Right: payment options -->
-                    <div class="col-span-12 lg:col-span-7 reveal">
-
-                        <!-- Local Payments -->
-                        <p class="text-[9px] font-black font-mono tracking-[0.4em] uppercase text-white/20 mb-2">Local Transfer</p>
-                        <div class="h-px w-full bg-white/10 mb-2"></div>
-
-                        <!-- JazzCash -->
-                        <div id="jazzcash-trigger"
-                             class="group flex items-center justify-between py-7 border-b border-white/10 hover:border-primary/20 transition-all duration-300 cursor-pointer">
-                            <div class="flex items-start gap-6">
-                                <span class="text-[10px] font-black font-mono tracking-[0.3em] text-white/20 group-hover:text-primary/60 transition-colors pt-1">01</span>
-                                <div>
-                                    <h3 class="font-black uppercase tracking-tight text-white group-hover:text-primary transition-colors leading-none">JazzCash</h3>
-                                    <p class="text-white/30 text-[10px] font-mono uppercase tracking-[0.25em] mt-2">Mobile Wallet — PK</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4 shrink-0 ml-4">
-                                <span class="text-[9px] font-black tracking-[0.3em] uppercase text-white/20 border border-white/10 group-hover:border-primary/20 group-hover:text-primary/50 px-3 py-1 transition-all">
-                                    Wallet
-                                </span>
-                                <div class="w-8 h-8 border border-white/10 group-hover:border-primary/30 flex items-center justify-center transition-all duration-300 translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100">
-                                    <i class="fa-solid fa-wallet text-[10px] text-primary"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Bank Alfalah -->
-                        <div id="alfalah-trigger"
-                             class="group flex items-center justify-between py-7 border-b border-white/10 hover:border-primary/20 transition-all duration-300 cursor-pointer">
-                            <div class="flex items-start gap-6">
-                                <span class="text-[10px] font-black font-mono tracking-[0.3em] text-white/20 group-hover:text-primary/60 transition-colors pt-1">02</span>
-                                <div>
-                                    <h3 class="font-black uppercase tracking-tight text-white group-hover:text-primary transition-colors leading-none">Bank Alfalah</h3>
-                                    <p class="text-white/30 text-[10px] font-mono uppercase tracking-[0.25em] mt-2">Bank Transfer — PK</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4 shrink-0 ml-4">
-                                <span class="text-[9px] font-black tracking-[0.3em] uppercase text-white/20 border border-white/10 group-hover:border-primary/20 group-hover:text-primary/50 px-3 py-1 transition-all">
-                                    Bank
-                                </span>
-                                <div class="w-8 h-8 border border-white/10 group-hover:border-primary/30 flex items-center justify-center transition-all duration-300 translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100">
-                                    <i class="fa-solid fa-building-columns text-[10px] text-primary"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Crypto -->
-                        <p class="text-[9px] font-black font-mono tracking-[0.4em] uppercase text-white/20 mt-12 mb-2">USDT / Crypto Wallets</p>
-                        <div class="h-px w-full bg-white/10 mb-1"></div>
-
-                        <!-- TON -->
-                        <div class="crypto-copy-btn group flex items-center justify-between py-5 border-b border-white/[0.06] hover:border-primary/20 transition-all duration-300 cursor-pointer"
-                             data-address="UQCl7x5fJFumU3OqvGXU98niQHj7e6DDJK5y-ReJLLZyc1Vz">
-                            <div class="flex items-center gap-5">
-                                <span class="text-[9px] font-black font-mono tracking-[0.3em] text-white/15 group-hover:text-primary/50 transition-colors w-4">—</span>
-                                <span class="px-2 py-0.5 bg-primary/10 border border-primary/20 text-[8px] text-primary font-black tracking-widest rounded-sm">USDT</span>
-                                <span class="font-black text-sm uppercase tracking-tight text-white/50 group-hover:text-white transition-colors">TON</span>
-                            </div>
-                            <i class="fa-solid fa-copy text-[10px] text-white/20 group-hover:text-primary transition-all duration-300"></i>
-                        </div>
-
-                        <!-- ETH ERC20 -->
-                        <div class="crypto-copy-btn group flex items-center justify-between py-5 border-b border-white/[0.06] hover:border-primary/20 transition-all duration-300 cursor-pointer"
-                             data-address="0x1c28642e9d4bc91a0f871964da79a3c6e1e439d4">
-                            <div class="flex items-center gap-5">
-                                <span class="text-[9px] font-black font-mono tracking-[0.3em] text-white/15 group-hover:text-primary/50 transition-colors w-4">—</span>
-                                <span class="px-2 py-0.5 bg-primary/10 border border-primary/20 text-[8px] text-primary font-black tracking-widest rounded-sm">USDT</span>
-                                <span class="font-black text-sm uppercase tracking-tight text-white/50 group-hover:text-white transition-colors">Ethereum (ERC20)</span>
-                            </div>
-                            <i class="fa-solid fa-copy text-[10px] text-white/20 group-hover:text-primary transition-all duration-300"></i>
-                        </div>
-
-                        <!-- TRON -->
-                        <div class="crypto-copy-btn group flex items-center justify-between py-5 border-b border-white/[0.06] hover:border-primary/20 transition-all duration-300 cursor-pointer"
-                             data-address="TEic82GeDWYz9VfCqsusDDXNv18gkvFeYb">
-                            <div class="flex items-center gap-5">
-                                <span class="text-[9px] font-black font-mono tracking-[0.3em] text-white/15 group-hover:text-primary/50 transition-colors w-4">—</span>
-                                <span class="px-2 py-0.5 bg-primary/10 border border-primary/20 text-[8px] text-primary font-black tracking-widest rounded-sm">USDT</span>
-                                <span class="font-black text-sm uppercase tracking-tight text-white/50 group-hover:text-white transition-colors">Tron (TRC20)</span>
-                            </div>
-                            <i class="fa-solid fa-copy text-[10px] text-white/20 group-hover:text-primary transition-all duration-300"></i>
-                        </div>
-
-                        <!-- Solana -->
-                        <div class="crypto-copy-btn group flex items-center justify-between py-5 border-b border-white/[0.06] hover:border-primary/20 transition-all duration-300 cursor-pointer"
-                             data-address="HPXdeMoiWKFvEb16fh2qGb4bAbdbRepojm6FtNbLBAFv">
-                            <div class="flex items-center gap-5">
-                                <span class="text-[9px] font-black font-mono tracking-[0.3em] text-white/15 group-hover:text-primary/50 transition-colors w-4">—</span>
-                                <span class="px-2 py-0.5 bg-primary/10 border border-primary/20 text-[8px] text-primary font-black tracking-widest rounded-sm">USDT</span>
-                                <span class="font-black text-sm uppercase tracking-tight text-white/50 group-hover:text-white transition-colors">Solana (SOL)</span>
-                            </div>
-                            <i class="fa-solid fa-copy text-[10px] text-white/20 group-hover:text-primary transition-all duration-300"></i>
-                        </div>
-
-                        <!-- BEP20 -->
-                        <div class="crypto-copy-btn group flex items-center justify-between py-5 border-b border-white/[0.06] hover:border-primary/20 transition-all duration-300 cursor-pointer"
-                             data-address="0x1c28642e9d4bc91a0f871964da79a3c6e1e439d4">
-                            <div class="flex items-center gap-5">
-                                <span class="text-[9px] font-black font-mono tracking-[0.3em] text-white/15 group-hover:text-primary/50 transition-colors w-4">—</span>
-                                <span class="px-2 py-0.5 bg-primary/10 border border-primary/20 text-[8px] text-primary font-black tracking-widest rounded-sm">USDT</span>
-                                <span class="font-black text-sm uppercase tracking-tight text-white/50 group-hover:text-white transition-colors">BSC (BEP20)</span>
-                            </div>
-                            <i class="fa-solid fa-copy text-[10px] text-white/20 group-hover:text-primary transition-all duration-300"></i>
-                        </div>
-
-                        <!-- Binance ID -->
-                        <div class="crypto-copy-btn group flex items-center justify-between py-5 border-b border-white/[0.06] hover:border-primary/20 transition-all duration-300 cursor-pointer"
-                             data-address="746320193">
-                            <div class="flex items-center gap-5">
-                                <span class="text-[9px] font-black font-mono tracking-[0.3em] text-white/15 group-hover:text-primary/50 transition-colors w-4">—</span>
-                                <span class="px-2 py-0.5 bg-white/5 border border-white/10 text-[8px] text-white/40 font-black tracking-widest rounded-sm group-hover:border-primary/20 group-hover:text-primary/50 transition-all">PAY</span>
-                                <span class="font-black text-sm uppercase tracking-tight text-white/50 group-hover:text-white transition-colors">Binance ID</span>
-                            </div>
-                            <i class="fa-solid fa-copy text-[10px] text-white/20 group-hover:text-primary transition-all duration-300"></i>
-                        </div>
-
-                        <!-- Footer hint -->
-                        <div class="mt-10 flex items-center gap-4">
-                            <div class="h-px flex-grow bg-white/5"></div>
-                            <p class="text-[9px] font-mono uppercase tracking-[0.35em] text-white/15 shrink-0">Click any row to copy address</p>
-                            <div class="h-px flex-grow bg-white/5"></div>
-                        </div>
-
-                    </div><!-- /payment options -->
-                </div>
-            </section><!-- /support -->
-
-        </div><!-- /elements -->
-        <!-- Privacy Authorization Banner -->
-        <div id="privacy-protocol"
-             class="fixed bottom-0 left-0 right-0 sm:bottom-12 sm:left-auto sm:right-12 z-[10000] hidden opacity-0 transition-all duration-700 transform translate-y-full sm:translate-y-10 p-0">
-
-            <div class="bg-[#05050f]/95 backdrop-blur-2xl border-t sm:border border-primary/20 p-6 sm:p-5 sm:max-w-sm rounded-t-xl sm:rounded-sm shadow-[0_-10px_40px_rgba(0,0,0,0.5)] sm:shadow-[0_0_30px_rgba(143,245,255,0.1)] w-full m-0">
-                <!-- Content remains the same -->
-                <div class="flex flex-col sm:flex-row items-start gap-4">
-                    <div class="w-full">
-                        <div class="flex justify-between items-center mb-2">
-                            <h4 class="text-primary font-mono text-[10px] font-black uppercase tracking-[0.3em]">Protocol Authorization</h4>
-                            <i class="fa-solid fa-shield-halved text-primary sm:hidden text-xs"></i>
-                        </div>
-                        <p class="text-dim/60 text-[10px] sm:text-[9px] font-mono leading-relaxed uppercase tracking-wider mb-5">
-                            This system utilizes Local Storage to maintain operator identity and security logs.
-                        </p>
-                        <div class="flex items-center gap-6">
-                            <button id="accept-protocol" class="flex-1 sm:flex-none bg-primary/10 sm:bg-transparent border border-primary/20 sm:border-0 sm:border-b sm:border-primary/40 py-3 sm:py-0 sm:pb-1 text-primary hover:text-white text-[10px] sm:text-[9px] font-black uppercase tracking-[0.2em] transition-all text-center">
-                                Authorize →
-                            </button>
-                            <a href="privacy-policy.html" class="text-dim/40 hover:text-dim text-[10px] sm:text-[9px] font-black uppercase tracking-[0.2em] transition-colors border-b border-transparent pb-1">
-                                Docs
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </main><!-- /main -->
-    <!-- ── QR Modal ── -->
-    <div id="qr-bank-modal" style="position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;padding:clamp(0.75rem,2vw,2rem);">
-        <div style="max-width:min(500px,calc(100vw - 1.5rem));width:100%;background:#fff;padding:1rem;border-radius:1rem;position:relative;">
-            <button id="close-modal" style="position:absolute;top:-3rem;right:0;color:#fff;font-size:2rem;background:none;border:none;cursor:pointer;">×</button>
-            <img src="" style="width:100%;height:auto;border-radius:0.5rem;" alt="Bank QR">
-        </div>
-    </div>
-
-    <!-- ══════════════════════════════════════════ FOOTER ══════════════════════════════════════════ -->
-    <footer class="container py-24 flex flex-col items-center text-center">
-        <div class="logo font-headline font-black text-3xl uppercase tracking-tighter text-white mb-4">
-            MUHAMMAD HAMZA ZIA <span class="outlined-text !opacity-40">PORTFOLIO</span>
-        </div>
-
-        <div class="flex flex-wrap justify-center gap-x-12 gap-y-6" id="social-cluster">
-            <a href="https://github.com/MuhammadHamzaZia" target="_blank"
-               class="text-white hover:text-primary transition-all flex items-center gap-3 group">
-                <i class="fa-brands fa-github text-xl"></i>
-                <span class="text-[10px] font-black uppercase tracking-widest opacity-60 group-hover:opacity-100">GitHub</span>
-            </a>
-            <a href="https://www.linkedin.com/in/muhammad-hamza-ziaa" target="_blank"
-               class="text-white hover:text-primary transition-all flex items-center gap-3 group">
-                <i class="fa-brands fa-linkedin text-xl"></i>
-                <span class="text-[10px] font-black uppercase tracking-widest opacity-60 group-hover:opacity-100">LinkedIn</span>
-            </a>
-            <a href="contact.html" target="_blank" class="text-white hover:text-primary transition-all flex items-center gap-3 group">
-                <i class="fa-solid fa-envelope text-xl"></i>
-                <span class="text-[10px] font-black uppercase tracking-widest opacity-60 group-hover:opacity-100">Email</span>
-            </a>
-            <a href="https://wa.me/923294515804" target="_blank" class="text-white hover:text-primary transition-all flex items-center gap-3 group">
-                <i class="fa-brands fa-whatsapp text-xl"></i>
-
-                <span class="text-[10px] font-black uppercase tracking-widest opacity-60 group-hover:opacity-100">Whatsapp</span>
-            </a>
-            <a href="https://www.instagram.com/muhammad_hamza_ziaa/" target="_blank"
-               class="text-white hover:text-primary transition-all flex items-center gap-3 group">
-                <i class="fa-brands fa-instagram text-xl"></i>
-                <span class="text-[10px] font-black uppercase tracking-widest opacity-60 group-hover:opacity-100">Instagram</span>
-            </a>
-        </div>
-
-
-
-        <div class="border-t border-white/10 mt-10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-
-            <!-- Left: Copyright -->
-            <p class="text-white/30 text-xs font-body tracking-widest uppercase">
-                &copy; <span id="copy-year"></span> Muhammad Hamza Zia. All Rights Reserved.
-            </p>
-
-            <!-- Center: Legal links -->
-            <div class="flex items-center gap-6">
-                <a href="privacy-policy.html"
-                   class="text-white/30 hover:text-primary text-xs font-body tracking-widest uppercase transition-colors duration-200">
-                    Privacy Policy
-                </a>
-                <span class="text-white/10">|</span>
-                <a href="privacy-policy.html#security"
-                   class="text-white/30 hover:text-primary text-xs font-body tracking-widest uppercase transition-colors duration-200">
-                    Security
-                </a>
-            </div>
-
-            <!-- Right: Built-by note -->
-            <p class="text-white/20 text-xs font-body tracking-widest uppercase">
-                Designed &amp; Built by
-                <span class="text-primary/60">Muhammad Hamza Zia</span>
-            </p>
-
-        </div>
-
-        <!-- Auto-update year — paste this script once anywhere before,forr updating footer date </body> -->
-
-        <script>
-            document.getElementById('copy-year').textContent = new Date().getFullYear();
-        </script>
-
-    </footer>
-
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="three-effects.js"></script>
-    <script src="script.js"></script>
-
-</body>
-</html>
+    /* "ml-4 shrink-0" right side buttons: don't push past the edge */
+    #journey-container .shrink-0,
+    #projects-container .shrink-0,
+    #support .shrink-0 {
+        margin-left: clamp(0.5rem, 2vw, 1rem) !important;
+        flex-shrink: 0;
+    }
+
+    /* Journey card top row: date badge wraps below title on very narrow screens */
+    #journey-container .flex.flex-wrap.items-start.justify-between {
+        gap: clamp(0.5rem, 1.5vw, 1rem);
+    }
+
+/* Project & support row right-side (arrow icon + tag): wrap on tiny screens */
+#projects-container .group,
+#jazzcash-trigger,
+#alfalah-trigger {
+    flex-wrap: wrap;
+}
+    /* Keep the right-side action cluster together but let it drop to new line */
+    #projects-container .group > div:last-child,
+    #jazzcash-trigger > div:last-child,
+    #alfalah-trigger > div:last-child {
+        margin-left: auto;
+    }
+
+/* Crypto rows: ensure copy icon never gets pushed off screen */
+.crypto-copy-btn {
+    min-width: 0;
+}
+
+    .crypto-copy-btn > div:first-child {
+        min-width: 0;
+        flex-shrink: 1;
+        overflow: hidden;
+    }
+
+    .crypto-copy-btn span.font-black.text-sm {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        min-width: 0;
+        max-width: 55vw;
+    }
+
+/* ─── Skills container ─── */
+#skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+    gap: clamp(0.5rem, 1vw, 0.75rem);
+}
+
+    #skills-container .liquid-card {
+        padding: clamp(0.85rem, 1.2vw, 1.5rem) !important;
+        min-width: 0;
+    }
+
+@media (min-width: 768px) {
+    #skills-container {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+/* ─── Section heading fluid text ─── */
+#journey .massive-text,
+#skills .massive-text,
+#projects .massive-text,
+#support .massive-text {
+    font-size: clamp(1.98rem, 0.81rem + 7.92vw, 8.55rem) !important;
+}
+
+/* ─── Contact section ─── */
+#contact .text-center {
+    max-width: 64rem;
+}
+
+#contact > div:last-child {
+    overflow: visible;
+    /* override section > * margins so auto-centering works */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    /* always 2 equal columns at every screen size */
+    grid-template-columns: repeat(2, 1fr) !important;
+    /* side padding keeps cards off screen edges on mobile */
+    padding-left: var(--pad-x);
+    padding-right: var(--pad-x);
+    box-sizing: border-box;
+}
+
+/* ─── Support section ─── */
+#support .liquid-card.p-10 {
+    padding: clamp(1.25rem, 2.5vw, 2.5rem) !important;
+}
+
+#support .liquid-card h3 {
+    font-size: clamp(1rem, 0.85rem + 0.8vw, 1.75rem);
+}
+
+#support .liquid-card i.text-5xl {
+    font-size: clamp(2rem, 4vw, 3.5rem) !important;
+    margin-bottom: clamp(0.75rem, 1.5vw, 1.5rem) !important;
+}
+
+/* ─── Crypto / Payment rows ─── */
+#crypto-grid .liquid-card {
+    padding: clamp(0.75rem, 1.2vw, 1.25rem) !important;
+}
+
+    #crypto-grid .liquid-card > div:first-child {
+        gap: clamp(0.5rem, 1vw, 1rem) !important;
+        flex-wrap: wrap;
+    }
+
+#crypto-grid span.uppercase {
+    font-size: clamp(0.6rem, 0.5rem + 0.3vw, 0.85rem);
+}
+
+#jazzcash-trigger h3,
+#alfalah-trigger h3 {
+    font-size: clamp(1.25rem, 1rem + 1.5vw, 2rem) !important;
+}
+
+/* ─── FOOTER ─── */
+footer {
+    border-top: 1px solid var(--card-border);
+    /* padding-x aligns content with sections; border-top still bleeds full width */
+    padding: clamp(3rem, 6vw, 8rem) var(--pad-x) clamp(2rem, 3vw, 4rem);
+}
+
+    footer .logo {
+        font-size: clamp(1rem, 0.8rem + 1.2vw, 2rem) !important;
+    }
+
+    footer .massive-text {
+        font-size: clamp(3rem, 2rem + 8vw, 9rem) !important;
+    }
+
+/* ─── Social cluster ─── */
+#social-cluster {
+    gap: clamp(0.75rem, 2vw, 3rem) clamp(1rem, 3vw, 3rem) !important;
+}
+
+    #social-cluster a span {
+        display: none;
+    }
+
+@media (min-width: 480px) {
+    #social-cluster a span {
+        display: inline;
+    }
+}
+
+#social-cluster a i {
+    font-size: clamp(1.25rem, 1rem + 0.5vw, 1.5rem) !important;
+}
+
+/* ─── QR Modal ─── */
+#qr-bank-modal {
+    padding: clamp(0.75rem, 2vw, 2rem) !important;
+}
+
+    #qr-bank-modal > div {
+        max-width: min(500px, calc(100vw - 1.5rem));
+        width: 100%;
+    }
+
+/* ─── Dark glass overlay ─── */
+.dark-glass-fade {
+    background: rgba(0,0,0,0.6) !important;
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.5), 0 10px 40px rgba(0,0,0,0.6);
+}
+
+    .dark-glass-fade:hover {
+        border-color: rgba(143,245,255,0.3) !important;
+    }
+
+/* ─── Autofill & Focus ─── */
+input:-webkit-autofill,
+textarea:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #000 inset !important;
+    -webkit-text-fill-color: white !important;
+}
+
+input:focus, textarea:focus {
+    background: rgba(143,245,255,0.05) !important;
+}
+
+/* ─── Cyber scanner ─── */
+@keyframes scan {
+    0% {
+        top: 0%;
+    }
+
+    100% {
+        top: calc(100% - 2px);
+    }
+}
+
+.animate-scan {
+    position: absolute;
+    animation: scan 6s ease-in-out infinite alternate;
+    box-shadow: 0 0 10px var(--primary), 0 0 5px var(--primary);
+}
+
+/* ─── Selection ─── */
+::selection {
+    background-color: #8ff5ff;
+    color: #000;
+}
+
+::-moz-selection {
+    background-color: #8ff5ff;
+    color: #000;
+}
+
+/* ─── Preloader ─── */
+@keyframes loading-slide {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(200%);
+    }
+}
+
+.custom-loading-bar {
+    will-change: transform;
+    transform: translateZ(0);
+    animation: loading-slide 1.2s infinite ease-in-out;
+}
+
+.preloader-complete {
+    opacity: 0 !important;
+    pointer-events: none;
+}
+
+/* ─── Marquee ─── */
+@keyframes marqueeScroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.marquee-container {
+    display: flex;
+    overflow: hidden;
+}
+
+.marquee-track {
+    display: flex;
+    white-space: nowrap;
+    width: max-content;
+    animation: marqueeScroll 25s linear infinite;
+    will-change: transform;
+}
+
+    .marquee-track:hover {
+        animation-play-state: paused;
+    }
+
+/* ─── Footer Accordion Pillars ─── */
+.footer-accordion {
+    overflow: hidden;
+}
+
+.f-item {
+    flex: 1;
+    transition: flex 0.7s cubic-bezier(0.23, 1, 0.32, 1), background-color 0.5s ease;
+    background-color: transparent;
+}
+
+@media (min-width: 769px) {
+    .f-item:hover {
+        flex: 3;
+    }
+}
+
+@media (max-width: 768px) {
+    .f-item:hover, .f-item:focus, .f-item:active {
+        flex: 2.5;
+    }
+
+    .f-default {
+        flex-direction: row;
+    }
+}
+
+.f-item.github:hover {
+    background-color: rgba(255,255,255,0.03);
+}
+
+.f-item.linkedin:hover {
+    background-color: rgba(10,102,194,0.08);
+    box-shadow: inset 0 0 80px rgba(10,102,194,0.1);
+}
+
+.f-item.email:hover {
+    background-color: rgba(234,67,53,0.08);
+    box-shadow: inset 0 0 80px rgba(234,67,53,0.1);
+}
+
+.f-item.whatsapp:hover {
+    background-color: rgba(37,211,102,0.08);
+    box-shadow: inset 0 0 80px rgba(37,211,102,0.1);
+}
+
+.f-item.insta:hover {
+    background-color: rgba(221,42,123,0.08);
+    box-shadow: inset 0 0 80px rgba(221,42,123,0.1);
+}
+
+/* ─── Landscape short phones ─── */
+@media (max-height: 480px) and (orientation: landscape) {
+    #hero {
+        min-height: auto;
+        padding-top: 4.5rem;
+        padding-bottom: 2rem;
+    }
+
+        #hero .massive-text {
+            font-size: clamp(1.75rem, 7vh, 3.5rem);
+        }
+
+    .linkdin-card {
+        margin-top: 1rem;
+    }
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        transition: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .custom-loading-bar {
+        animation: none;
+    }
+}
+
+/* ─── Contact notification bar ─── */
+.notification-active {
+    top: 100px !important;
+    opacity: 1 !important;
+}
