@@ -609,110 +609,49 @@ input:focus, textarea:focus { background: rgba(143,245,255,0.05) !important; }
 }
 
 
-/* ==========================================================================
-   ADVANCED MOBILE SCROLL-HOVER BRUTALIST ALIGNMENT
-   ========================================================================== */
 
 /* ==========================================================================
-   ADVANCED MOBILE SCROLL-HOVER OPTIMIZED BRUTALIST ALIGNMENT
+   PERFORMANCE OPTIMIZED MOBILE TACTILE INTERACTIONS
    ========================================================================== */
 
 @media (pointer: coarse) {
+    /* Step 1: Strip complex animations and give mobile a snappy, raw kinetic scroll */
+    * {
+        transition-delay: 0s !important;
+        /* Stops browser from processing non-GPU layout micro-movements on scroll */
+    }
+
+    /* Step 2: Use native CSS :active state (fires beautifully only on tap/press) */
     
-    /* Global Base Rule for Accelerating Tracked Components */
-    .outlined-text,
-    .liquid-card,
-    .liquid-card img,
-    .liquid-card i,
-    #projects-container a h3,
-    #jazzcash-trigger h3,
-    #alfalah-trigger h3,
-    .crypto-copy-btn span.font-black,
-    div.translate-x-2 {
-        /* Force GPU Layer Allocation for 60fps scrolling & zero-latency animations */
-        will-change: transform, opacity, color;
-        transition: 
-            transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
-            opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
-            color 0.4s ease,
-            -webkit-text-stroke 0.4s ease !important;
+    /* Elegant Tap Feedback for Bento Glass Cards */
+    .liquid-card:active {
+        border-color: var(--primary) !important;
+        background: rgba(143, 245, 255, 0.05) !important;
+        transform: scale(0.99) !important; /* Premium micro-press effect */
+        box-shadow: 0 10px 20px rgba(0,0,0,0.4) !important;
+        transition: transform 0.1s ease, border-color 0.1s ease !important;
     }
 
-    /* 1. Navigation Header & Footer Logo Active Glow States */
-    nav .logo span.outlined-text.has-hover,
-    footer .logo span.outlined-text.has-hover {
-        -webkit-text-stroke: 2px var(--primary) !important;
-        color: rgba(143, 245, 255, 0.18) !important;
-        text-shadow: 0 0 25px rgba(143, 245, 255, 0.8), 0 0 10px var(--primary) !important;
-        opacity: 1 !important;
-    }
-
-    /* 2. Massive Content Headers (.massive-text .outlined-text) */
-    .massive-text .outlined-text.has-hover,
-    .outlined-text.has-hover {
-        -webkit-text-stroke: 2px var(--primary) !important;
-        color: rgba(143, 245, 255, 0.12) !important;
-        text-shadow: 0 0 35px rgba(143, 245, 255, 0.7), 0 0 12px var(--primary) !important;
-    }
-
-    /* 3. Core Structural Glass Bento Layouts */
-    .liquid-card {
-        position: relative;
-        z-index: 1;
-    }
-
-    /* Hardware Accelerated Layer for Neon Shadow Flare (Zero Layout Painting Cost) */
-    .liquid-card::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        background: transparent;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 25px rgba(143,245,255,0.25);
-        opacity: 0;
-        z-index: -1;
-        will-change: opacity;
-        transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    }
-
-    .liquid-card.has-hover {
-        border-color: rgba(143, 245, 255, 0.6) !important;
-        /* Kinetic micro-lift effect */
-        transform: translateY(-5px) scale(1.012) !important;
-    }
-    
-    /* Fade in the optimized shadow layer smoothly */
-    .liquid-card.has-hover::after {
-        opacity: 1 !important;
-    }
-    
-    /* Reveal inner ambient fluid matrix radial light */
-    .liquid-card.has-hover::before {
-        opacity: 1 !important;
-        transition: opacity 0.5s ease !important;
-    }
-    
-    /* Cinematic scale-up for internal graphics cards */
-    .liquid-card.has-hover img,
-    .liquid-card.has-hover i {
-        transform: scale(1.08) rotate(0.02deg) !important;
-    }
-
-    /* 4. Project List Anchors & Payment Modules */
-    #projects-container a.has-hover h3,
-    #jazzcash-trigger.has-hover h3,
-    #alfalah-trigger.has-hover h3,
-    .crypto-copy-btn.has-hover span.font-black {
+    /* Vibrant Tap Feedback for Dynamic List Nodes & Payment Rows */
+    #projects-container a:active h3,
+    #jazzcash-trigger:active h3,
+    #alfalah-trigger:active h3,
+    .crypto-copy-btn:active span.font-black {
         color: var(--primary) !important;
-        text-shadow: 0 0 12px rgba(143,245,255,0.3) !important;
     }
 
-    /* Slide peripheral arrows seamlessly across the GPU plane */
-    #projects-container a.has-hover div.translate-x-2,
-    #jazzcash-trigger.has-hover div.translate-x-2,
-    #alfalah-trigger.has-hover div.translate-x-2 {
-        transform: translateX(0) translateZ(0) !important;
+    #projects-container a:active div.translate-x-2,
+    #jazzcash-trigger:active div.translate-x-2,
+    #alfalah-trigger:active div.translate-x-2 {
+        transform: translateX(0) !important;
         opacity: 1 !important;
-        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease !important;
+        transition: transform 0.15s ease-out !important;
+    }
+
+    /* Clean typography accent flare on text elements when tapped */
+    .outlined-text:active {
+        -webkit-text-stroke: 2px var(--primary) !important;
+        color: rgba(143, 245, 255, 0.1) !important;
+        text-shadow: 0 0 20px var(--primary) !important;
     }
 }
