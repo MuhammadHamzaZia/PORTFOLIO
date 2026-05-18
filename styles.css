@@ -1,5 +1,11 @@
 /* ═══ VOID AURORA — Brutalist Design System ═══ */
 
+/* Lock root font size — prevents browser default (14px–18px variance)
+   from making rem-based clamp() values differ local vs deployed */
+html {
+    font-size: 16px;
+}
+
 :root {
     --bg: #05050f;
     --primary: #8ff5ff;
@@ -13,17 +19,13 @@
     --card-bg: rgba(255, 255, 255, 0.05);
     --card-border: rgba(255, 255, 255, 0.25);
     --accent-glow: rgba(143, 245, 255, 0.25);
-    /* ─── Fluid spacing scale (replaces all per-breakpoint overrides) ─── */
-    /* container side padding: 1rem on tiny phones → 5rem on wide monitors */
-    --pad-x: clamp(1rem, 4vw, 5rem);
-    /* section vertical padding: 7rem on phones → 14rem on wide screens */
-    --pad-section: clamp(7rem, 14vw, 14rem);
-    /* card internal padding: 1.25rem → 3rem */
-    --pad-card: clamp(1.25rem, 2.5vw, 3rem);
-    /* nav vertical padding: 0.6rem → 1.25rem */
-    --pad-nav: clamp(0.6rem, 1vw, 1.25rem);
-    /* nav horizontal padding: 0.75rem → 3rem */
-    --pad-nav-x: clamp(0.75rem, 2.5vw, 3rem);
+
+    /* ─── Fluid spacing scale ─── */
+    --pad-x:       clamp(1.25rem, 4vw,   5rem);    /* min bumped: more right clearance on narrow phones */
+    --pad-section: clamp(7rem,    14vw,  14rem);
+    --pad-card:    clamp(0.85rem, 2.5vw, 3rem);    /* min reduced: more usable width inside cards on phones */
+    --pad-nav:     clamp(0.6rem,  1vw,   1.25rem);
+    --pad-nav-x:   clamp(0.75rem, 2.5vw, 3rem);
 }
 
 /* ─── Reset ─── */
@@ -34,13 +36,13 @@
     cursor: default !important;
 }
 
+/* clip prevents horizontal scrollbar without creating a stacking
+   context that clips box-shadow glow near viewport edges */
 body {
     background-color: var(--bg);
     color: var(--text);
     font-family: var(--sans);
     line-height: 1.6;
-    /* clip instead of hidden: prevents horizontal scrollbar without
-       creating a stacking context that clips box-shadow glow near edges */
     overflow-x: clip;
     text-shadow: 0 1px 4px rgba(0,0,0,0.6);
 }
@@ -48,10 +50,8 @@ body {
 /* ─── WebGL Canvas ─── */
 #particles-canvas {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
     z-index: -1;
     pointer-events: none;
     transform: translateZ(0);
@@ -63,13 +63,10 @@ body {
 .container {
     max-width: 1680px;
     margin: 0 auto;
-    padding: 0; /* no side padding — each child handles its own indent */
+    padding: 0;       /* no side padding — each child handles its own indent */
     overflow: visible;
 }
-
-.elements {
-    overflow: visible;
-}
+.elements { overflow: visible; }
 
 /* ─── Typography ─── */
 h1, h2, h3 {
@@ -78,16 +75,16 @@ h1, h2, h3 {
     letter-spacing: -0.04em;
 }
 
-/* 
- * massive-text: fluid from ~1.75rem on 320px up to 9.5rem on 1680px+
- * ~12% reduction across the full range
- */
+/* massive-text: fluid ~1.58rem (tiny phone) → 8.55rem (wide monitor) */
 .massive-text {
     font-size: clamp(1.575rem, 1.575rem + 7.1vw, 8.55rem);
     line-height: 0.95;
     font-weight: 900;
     padding: 0.2em 0.05em;
     overflow: visible;
+    /* prevent right bleed on narrow phones */
+    max-width: 100%;
+    word-break: break-word;
 }
 
 .outlined-text {
@@ -96,22 +93,20 @@ h1, h2, h3 {
     transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     letter-spacing: 0.07em;
 }
-
-    .outlined-text:hover {
-        -webkit-text-stroke: 2px var(--primary);
-        color: rgba(143, 245, 255, 0.1);
-        text-shadow: 0 0 40px var(--primary);
-    }
+.outlined-text:hover {
+    -webkit-text-stroke: 2px var(--primary);
+    color: rgba(143, 245, 255, 0.1);
+    text-shadow: 0 0 40px var(--primary);
+}
 
 /* ─── Section number watermark ─── */
 .section-num {
     font-family: var(--headline);
-    /* fluid: 3.6rem on tiny → 13.5rem on wide — ~12% reduction */
     font-size: clamp(3.6rem, 1.1rem + 10.35vw, 13.5rem);
     font-weight: 950;
     opacity: 0.50;
     position: absolute;
-    /* top offset: 0.5rem on mobile (sits inside padding), floats up to -3rem on wide screens */
+    /* sits inside top padding on mobile; floats slightly above on wide screens */
     top: clamp(0.5rem, -0.5rem + 2vw, -3rem);
     left: clamp(0rem, -0.5vw, -1.5rem);
     pointer-events: none;
@@ -136,48 +131,37 @@ h1, h2, h3 {
     overflow: hidden;
     box-shadow: 0 4px 30px rgba(0,0,0,0.4);
 }
-
-    .liquid-card::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, var(--primary), transparent);
-        opacity: 0.3;
-    }
-
-    .liquid-card:hover {
-        border-color: var(--primary);
-        /* fluid lift: smaller on mobile, full on desktop */
-        transform: translateY(clamp(-5px, -0.6vw, -10px)) scale(clamp(1.005, 1.002 + 0.001 * 1vw, 1.02));
-        box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(143,245,255,0.1);
-    }
-
-    .liquid-card::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(143,245,255,0.05) 0%, transparent 70%);
-        opacity: 0;
-        transition: opacity 0.4s;
-        pointer-events: none;
-    }
-
-    .liquid-card:hover::before {
-        opacity: 1;
-    }
+.liquid-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    opacity: 0.3;
+}
+.liquid-card:hover {
+    border-color: var(--primary);
+    transform: translateY(clamp(-5px, -0.6vw, -10px)) scale(clamp(1.005, 1.002 + 0.001 * 1vw, 1.02));
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(143,245,255,0.1);
+}
+.liquid-card::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(143,245,255,0.05) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+}
+.liquid-card:hover::before { opacity: 1; }
 
 /* ─── NAVIGATION ─── */
 nav {
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
-    /* edges align with section margin so nav lines up with content */
+    /* edges align with section > * margin so nav lines up with content */
     width: min(calc(100% - var(--pad-x) * 2), 1680px);
     max-width: 1680px;
     z-index: 100;
@@ -190,54 +174,45 @@ nav {
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 0 0 14px 14px;
 }
-    /* fluid logo: 0.72rem → 2rem */
-    nav .logo {
-        font-family: var(--headline);
-        font-weight: 900;
-        font-size: clamp(0.72rem, 0.5rem + 1.2vw, 2rem);
-        text-transform: uppercase;
-        letter-spacing: -0.04em;
-        color: #fff;
-        line-height: 1.4;
-    }
-
+nav .logo {
+    font-family: var(--headline);
+    font-weight: 900;
+    font-size: clamp(0.72rem, 0.5rem + 1.2vw, 2rem);
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    color: #fff;
+    line-height: 1.4;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 .nav-links {
     display: flex;
     gap: clamp(0.6rem, 2vw, 2rem);
     align-items: center;
 }
-
-    .nav-links a {
-        text-decoration: none;
-        color: #fff;
-        font-size: clamp(0.7rem, 0.4rem + 0.7vw, 0.85rem);
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        opacity: 0.7;
-        transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-        .nav-links a:hover {
-            opacity: 1;
-            color: var(--primary);
-            text-shadow: 0 0 10px var(--primary);
-        }
-/* Hide nav text links on very small screens (under ~520px) */
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-size: clamp(0.7rem, 0.4rem + 0.7vw, 0.85rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    opacity: 0.7;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.nav-links a:hover {
+    opacity: 1;
+    color: var(--primary);
+    text-shadow: 0 0 10px var(--primary);
+}
 @media (max-width: 520px) {
-    .nav-links > a[href^="#"] {
-        display: none;
-    }
+    .nav-links > a[href^="#"] { display: none; }
 }
-/* Show social icons only on xl+ */
-.nav-links .hidden.xl\:flex {
-    display: none;
-}
-
+.nav-links .hidden.xl\:flex { display: none; }
 @media (min-width: 1280px) {
-    .nav-links .hidden.xl\:flex {
-        display: flex;
-    }
+    .nav-links .hidden.xl\:flex { display: flex; }
 }
 
 /* ─── HERO ─── */
@@ -247,19 +222,20 @@ nav {
     flex-direction: column;
     justify-content: center;
     position: relative;
-    /* full width — no side margin; hero-content child handles indent */
     padding-top: clamp(4.5rem, 2rem + 5vw, 10rem);
     padding-bottom: clamp(2rem, 3vw, 4rem);
+    /* full width — hero-content child handles the side indent */
 }
-
 .hero-content {
     position: relative;
     z-index: 10;
-    /* indent matches section children — consistent with rest of page */
     margin-left: var(--pad-x);
     margin-right: var(--pad-x);
+    /* hard right boundary — nothing escapes past margin on narrow phones */
+    max-width: calc(100% - var(--pad-x) * 2);
+    min-width: 0;
+    overflow-x: clip;
 }
-
 .hero-subtitle {
     font-size: clamp(0.7rem, 0.5rem + 0.5vw, 1rem);
     color: var(--primary);
@@ -267,33 +243,12 @@ nav {
     margin-bottom: 1rem;
     display: block;
 }
-/* Hero H1 */
-#hero h1 {
-    font-size: clamp(1.17rem, 0.81rem + 3.15vw, 3.51rem);
-}
-
-#hero .massive-text {
-    font-size: clamp(1.575rem, 0.81rem + 8.vw, 8.55rem);
-}
-
-#hero p#static-bio {
-    font-size: clamp(0.9rem, 0.75rem + 0.5vw, 1.25rem);
-    line-height: 1.55;
-}
-/* CTA row: wraps naturally on narrow screens */
-#hero .reveal.mt-8.flex {
-    flex-wrap: wrap;
-    gap: clamp(0.75rem, 2vw, 1.5rem);
-}
-
-    #hero .reveal.mt-8.flex a {
-        font-size: clamp(0.85rem, 0.6rem + 0.6vw, 1.125rem);
-    }
-
-/* Hero line colour tones */
-#hero .massive-text > span[data-translate="heroLine1"] {
-    color: #d4bfff;
-}
+#hero h1 { font-size: clamp(1.17rem, 0.81rem + 3.15vw, 3.51rem); }
+#hero .massive-text { font-size: clamp(1.575rem, 0.81rem + 9.45vw, 8.55rem); }
+#hero p#static-bio { font-size: clamp(0.9rem, 0.75rem + 0.5vw, 1.25rem); line-height: 1.55; }
+#hero .reveal.mt-8.flex { flex-wrap: wrap; gap: clamp(0.75rem, 2vw, 1.5rem); }
+#hero .reveal.mt-8.flex a { font-size: clamp(0.85rem, 0.6rem + 0.6vw, 1.125rem); }
+#hero .massive-text > span[data-translate="heroLine1"] { color: #d4bfff; }
 
 /* ─── LinkedIn Card ─── */
 .linkdin-card {
@@ -303,12 +258,10 @@ nav {
     transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     overflow: hidden;
 }
-/* Below 1024px: flow it into document rather than absolute */
 @media (max-width: 1024px) {
     .linkdin-card {
         position: relative;
-        top: 0;
-        right: 0;
+        top: 0; right: 0;
         margin-top: clamp(1rem, 2vw, 2rem);
         display: flex;
         justify-content: center;
@@ -318,39 +271,54 @@ nav {
 /* ─── SECTIONS ─── */
 section {
     padding: var(--pad-section) 0;
-    /* full viewport width — glows/shadows bleed freely past edges */
     position: relative;
     overflow: visible;
-    /* NO overflow-x: clip — that was cropping horizontal glows */
-    /* NO isolation: isolate — that was creating a stacking cage */
-    /* NO margin-left/right — indent is on children instead */
+    /* NO overflow-x: clip  — would crop horizontal glows */
+    /* NO isolation: isolate — would create a stacking cage */
+    /* NO margin-left/right — indent lives on direct children */
 }
 
-    /* Every direct child of a section gets the side indent.
-   This replaces the old container padding and old section margin,
-   but because the section box itself is full-width, box-shadows
-   and glow effects on cards can freely extend past the content edge. */
-    section > * {
-        margin-left: var(--pad-x);
-        margin-right: var(--pad-x);
-    }
+/* Every direct child gets the side indent.
+   Section box stays full-width so glows bleed freely past edges.
+   min-width:0 prevents flex/grid children from overflowing right. */
+section > * {
+    margin-left: var(--pad-x);
+    margin-right: var(--pad-x);
+    min-width: 0;
+    max-width: calc(100% - var(--pad-x) * 2);
+    box-sizing: border-box;
+}
 
-    /* section-num is absolutely positioned — it must NOT get the margin
-   (it positions relative to the section edge, not the content indent) */
-    section > .section-num {
-        margin-left: 0;
-        margin-right: 0;
+/* section-num is absolute — must NOT inherit the child indent */
+section > .section-num {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: none;
+}
+
+/* Grid wrappers inside sections: must not overflow their container */
+section .grid {
+    min-width: 0;
+    overflow: visible;
+}
+
+/* On small phones, grid-cols-12 causes right overflow.
+   Force single column below 768px, let lg: classes handle wider. */
+@media (max-width: 767px) {
+    section .grid.grid-cols-12 {
+        grid-template-columns: 1fr !important;
+        gap: clamp(1.5rem, 4vw, 2rem) !important;
     }
+    /* col-span classes mean nothing in 1-col grid — reset them */
+    section .grid.grid-cols-12 > * {
+        grid-column: 1 / -1 !important;
+    }
+}
 
 #projects, #support {
     content-visibility: auto;
     contain-intrinsic-size: 800px;
 }
-
-    #projects .liquid-card {
-        margin: clamp(0.5rem, 1.5vw, 1.5rem);
-        padding: 1rem !important;
-    }
 
 /* ─── Asymmetric Grid ─── */
 .asymmetric-grid {
@@ -370,96 +338,126 @@ section {
     color: transparent;
     text-shadow: none;
 }
-
-.mt-large {
-    margin-top: clamp(3rem, 5vw, 6rem);
-}
-
-.mb-large {
-    margin-bottom: clamp(3rem, 5vw, 6rem);
-}
+.mt-large { margin-top: clamp(3rem, 5vw, 6rem); }
+.mb-large { margin-bottom: clamp(3rem, 5vw, 6rem); }
 
 /* ─── ANIMATIONS ─── */
 .reveal {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    will-change: transform, opacity;
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
 }
-
-    .reveal.active {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 /* ─── Tools Grid ─── */
 #tools-container {
     display: grid;
-    /* fluid columns: 1 col on tiny, up to as many as fit at 420px each */
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
     gap: clamp(0.75rem, 1.5vw, 1.5rem);
     margin-top: clamp(2rem, 4vw, 4rem);
 }
-
-.scroll-item {
-    width: 100%;
-    min-width: 0;
+.scroll-item { width: 100%; min-width: 0; }
+.scroll-item .liquid-card {
+    padding: clamp(1rem, 1.5vw, 1.5rem);
+    gap: clamp(0.75rem, 1.5vw, 1.5rem) !important;
 }
-
-    .scroll-item .liquid-card {
-        padding: clamp(1rem, 1.5vw, 1.5rem);
-        gap: clamp(0.75rem, 1.5vw, 1.5rem) !important;
-    }
-        /* Tool icon box: fluid size */
-        .scroll-item .liquid-card > div:first-child {
-            width: clamp(3rem, 4vw + 1rem, 5rem) !important;
-            height: clamp(3rem, 4vw + 1rem, 5rem) !important;
-            padding: clamp(0.4rem, 0.5vw, 0.75rem) !important;
-            flex-shrink: 0;
-        }
-
-        .scroll-item .liquid-card h3 {
-            font-size: clamp(0.875rem, 0.75rem + 0.5vw, 1.25rem) !important;
-            line-height: 1.2;
-        }
+.scroll-item .liquid-card > div:first-child {
+    width:   clamp(3rem, 4vw + 1rem, 5rem) !important;
+    height:  clamp(3rem, 4vw + 1rem, 5rem) !important;
+    padding: clamp(0.4rem, 0.5vw, 0.75rem) !important;
+    flex-shrink: 0;
+}
+.scroll-item .liquid-card h3 {
+    font-size: clamp(0.875rem, 0.75rem + 0.5vw, 1.25rem) !important;
+    line-height: 1.2;
+}
 
 /* ─── Journey container ─── */
 #journey-container .whitespace-nowrap {
     white-space: normal;
     font-size: clamp(1.25rem, 1rem + 1.5vw, 2.5rem) !important;
 }
-
-#journey-container h3 {
-    font-size: clamp(1.1rem, 0.9rem + 1vw, 2rem) !important;
-}
-
+#journey-container h3 { font-size: clamp(1.1rem, 0.9rem + 1vw, 2rem) !important; }
 #journey-container {
     padding: 0 0.25rem;
     overflow: visible;
+    min-width: 0;
+}
+/* Journey/Support/Projects flex rows: wrap and constrain on mobile */
+#journey-container .flex,
+#projects-container .flex,
+#support .flex {
+    flex-wrap: wrap;
+    min-width: 0;
+}
+/* Badge/tag pill rows: shrink on very small phones */
+#journey-container .flex.items-start.gap-6,
+#support .flex.items-start.gap-6 {
+    gap: clamp(0.5rem, 2vw, 1.5rem);
+}
+/* "ml-4 shrink-0" right side buttons: don't push past the edge */
+#journey-container .shrink-0,
+#projects-container .shrink-0,
+#support .shrink-0 {
+    margin-left: clamp(0.5rem, 2vw, 1rem) !important;
+    flex-shrink: 0;
+}
+
+/* Journey card top row: date badge wraps below title on very narrow screens */
+#journey-container .flex.flex-wrap.items-start.justify-between {
+    gap: clamp(0.5rem, 1.5vw, 1rem);
+}
+
+/* Project & support row right-side (arrow icon + tag): wrap on tiny screens */
+#projects-container .group,
+#jazzcash-trigger,
+#alfalah-trigger {
+    flex-wrap: wrap;
+}
+/* Keep the right-side action cluster together but let it drop to new line */
+#projects-container .group > div:last-child,
+#jazzcash-trigger > div:last-child,
+#alfalah-trigger > div:last-child {
+    margin-left: auto;
+}
+
+/* Crypto rows: ensure copy icon never gets pushed off screen */
+.crypto-copy-btn {
+    min-width: 0;
+}
+.crypto-copy-btn > div:first-child {
+    min-width: 0;
+    flex-shrink: 1;
+    overflow: hidden;
+}
+.crypto-copy-btn span.font-black.text-sm {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    max-width: 55vw;
 }
 
 /* ─── Skills container ─── */
 #skills-container {
     display: grid;
-    /* 1 col on tiny, 2 on medium, 6-col logic restored via col-span in HTML */
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
     gap: clamp(0.5rem, 1vw, 0.75rem);
 }
-
-    #skills-container .liquid-card {
-        padding: clamp(0.85rem, 1.2vw, 1.5rem) !important;
-        min-width: 0;
-    }
-/* Restore the lg:col-span classes for the skills bento layout on wider screens */
+#skills-container .liquid-card {
+    padding: clamp(0.85rem, 1.2vw, 1.5rem) !important;
+    min-width: 0;
+}
 @media (min-width: 768px) {
-    #skills-container {
-        grid-template-columns: repeat(6, 1fr);
-    }
+    #skills-container { grid-template-columns: repeat(6, 1fr); }
 }
 
-/* ─── Journey section title fluid text ─── */
+/* ─── Section heading fluid text ─── */
 #journey .massive-text,
 #skills .massive-text,
 #projects .massive-text,
@@ -468,12 +466,10 @@ section {
 }
 
 /* ─── Contact section ─── */
-#contact .text-center {
-    max-width: 64rem;
-}
-
+#contact .text-center { max-width: 64rem; }
 #contact > div:last-child {
     overflow: visible;
+    /* override section > * margins so auto-centering works */
     margin-left: auto !important;
     margin-right: auto !important;
     /* always 2 equal columns at every screen size */
@@ -484,119 +480,60 @@ section {
     box-sizing: border-box;
 }
 
-#support .liquid-card.p-10 {
-    padding: clamp(1.25rem, 2.5vw, 2.5rem) !important;
-}
-
-#support .liquid-card h3 {
-    font-size: clamp(1rem, 0.85rem + 0.8vw, 1.75rem);
-}
-
+/* ─── Support section ─── */
+#support .liquid-card.p-10 { padding: clamp(1.25rem, 2.5vw, 2.5rem) !important; }
+#support .liquid-card h3 { font-size: clamp(1rem, 0.85rem + 0.8vw, 1.75rem); }
 #support .liquid-card i.text-5xl {
     font-size: clamp(2rem, 4vw, 3.5rem) !important;
     margin-bottom: clamp(0.75rem, 1.5vw, 1.5rem) !important;
 }
 
 /* ─── Crypto / Payment rows ─── */
-#crypto-grid .liquid-card {
-    padding: clamp(0.75rem, 1.2vw, 1.25rem) !important;
-}
-
-    #crypto-grid .liquid-card > div:first-child {
-        gap: clamp(0.5rem, 1vw, 1rem) !important;
-        flex-wrap: wrap;
-    }
-
-#crypto-grid span.uppercase {
-    font-size: clamp(0.6rem, 0.5rem + 0.3vw, 0.85rem);
-}
-
-/* JazzCash / Alfalah row text */
+#crypto-grid .liquid-card { padding: clamp(0.75rem, 1.2vw, 1.25rem) !important; }
+#crypto-grid .liquid-card > div:first-child { gap: clamp(0.5rem, 1vw, 1rem) !important; flex-wrap: wrap; }
+#crypto-grid span.uppercase { font-size: clamp(0.6rem, 0.5rem + 0.3vw, 0.85rem); }
 #jazzcash-trigger h3,
-#alfalah-trigger h3 {
-    font-size: clamp(1.25rem, 1rem + 1.5vw, 2rem) !important;
-}
+#alfalah-trigger h3 { font-size: clamp(1.25rem, 1rem + 1.5vw, 2rem) !important; }
 
 /* ─── FOOTER ─── */
 footer {
     border-top: 1px solid var(--card-border);
-    /* full width so border-top bleeds edge to edge */
-    /* indent via padding so content aligns with sections */
+    /* padding-x aligns content with sections; border-top still bleeds full width */
     padding: clamp(3rem, 6vw, 8rem) var(--pad-x) clamp(2rem, 3vw, 4rem);
 }
+footer .logo { font-size: clamp(1rem, 0.8rem + 1.2vw, 2rem) !important; }
+footer .massive-text { font-size: clamp(3rem, 2rem + 8vw, 9rem) !important; }
 
-    footer .logo {
-        font-size: clamp(1rem, 0.8rem + 1.2vw, 2rem) !important;
-    }
-
-    footer .massive-text {
-        font-size: clamp(3rem, 2rem + 8vw, 9rem) !important;
-    }
-
-/* Social cluster: show icons only on tiny, show labels on wider */
-#social-cluster {
-    gap: clamp(0.75rem, 2vw, 3rem) clamp(1rem, 3vw, 3rem) !important;
-}
-
-    #social-cluster a span {
-        /* hide labels below ~480px */
-        display: none;
-
-    }
-
-@media (min-width: 480px) {
-    #social-cluster a span {
-        display: inline;
-    }
-}
-
-#social-cluster a i {
-    font-size: clamp(1.25rem, 1rem + 0.5vw, 1.5rem) !important;
-}
+/* ─── Social cluster ─── */
+#social-cluster { gap: clamp(0.75rem, 2vw, 3rem) clamp(1rem, 3vw, 3rem) !important; }
+#social-cluster a span { display: none; }
+@media (min-width: 480px) { #social-cluster a span { display: inline; } }
+#social-cluster a i { font-size: clamp(1.25rem, 1rem + 0.5vw, 1.5rem) !important; }
 
 /* ─── QR Modal ─── */
-#qr-bank-modal {
-    padding: clamp(0.75rem, 2vw, 2rem) !important;
-}
+#qr-bank-modal { padding: clamp(0.75rem, 2vw, 2rem) !important; }
+#qr-bank-modal > div { max-width: min(500px, calc(100vw - 1.5rem)); width: 100%; }
 
-    #qr-bank-modal > div {
-        max-width: min(500px, calc(100vw - 1.5rem));
-        width: 100%;
-    }
-
-
-/* ─── Dark glass overlay (contact form) ─── */
+/* ─── Dark glass overlay ─── */
 .dark-glass-fade {
     background: rgba(0,0,0,0.6) !important;
     box-shadow: inset 0 0 30px rgba(0,0,0,0.5), 0 10px 40px rgba(0,0,0,0.6);
 }
+.dark-glass-fade:hover { border-color: rgba(143,245,255,0.3) !important; }
 
-    .dark-glass-fade:hover {
-        border-color: rgba(143,245,255,0.3) !important;
-    }
-
-/* ─── Autofill & Focus Fixes ─── */
+/* ─── Autofill & Focus ─── */
 input:-webkit-autofill,
 textarea:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 30px #000 inset !important;
     -webkit-text-fill-color: white !important;
 }
-
-input:focus, textarea:focus {
-    background: rgba(143,245,255,0.05) !important;
-}
+input:focus, textarea:focus { background: rgba(143,245,255,0.05) !important; }
 
 /* ─── Cyber scanner ─── */
 @keyframes scan {
-    0% {
-        top: 0%;
-    }
-
-    100% {
-        top: calc(100% - 2px);
-    }
+    0%   { top: 0%; }
+    100% { top: calc(100% - 2px); }
 }
-
 .animate-scan {
     position: absolute;
     animation: scan 6s ease-in-out infinite alternate;
@@ -604,54 +541,27 @@ input:focus, textarea:focus {
 }
 
 /* ─── Selection ─── */
-::selection {
-    background-color: #8ff5ff;
-    color: #000;
-}
-
-::-moz-selection {
-    background-color: #8ff5ff;
-    color: #000;
-}
+::selection      { background-color: #8ff5ff; color: #000; }
+::-moz-selection { background-color: #8ff5ff; color: #000; }
 
 /* ─── Preloader ─── */
 @keyframes loading-slide {
-    0% {
-        transform: translateX(-100%);
-    }
-
-    100% {
-        transform: translateX(200%);
-    }
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
 }
-
 .custom-loading-bar {
     will-change: transform;
     transform: translateZ(0);
     animation: loading-slide 1.2s infinite ease-in-out;
 }
-
-.preloader-complete {
-    opacity: 0 !important;
-    pointer-events: none;
-}
+.preloader-complete { opacity: 0 !important; pointer-events: none; }
 
 /* ─── Marquee ─── */
 @keyframes marqueeScroll {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
-
-.marquee-container {
-    display: flex;
-    overflow: hidden;
-}
-
+.marquee-container { display: flex; overflow: hidden; }
 .marquee-track {
     display: flex;
     white-space: nowrap;
@@ -659,156 +569,41 @@ input:focus, textarea:focus {
     animation: marqueeScroll 25s linear infinite;
     will-change: transform;
 }
-
-    .marquee-track:hover {
-        animation-play-state: paused;
-    }
+.marquee-track:hover { animation-play-state: paused; }
 
 /* ─── Footer Accordion Pillars ─── */
-.footer-accordion {
-    overflow: hidden;
-}
-
+.footer-accordion { overflow: hidden; }
 .f-item {
     flex: 1;
     transition: flex 0.7s cubic-bezier(0.23, 1, 0.32, 1), background-color 0.5s ease;
     background-color: transparent;
 }
-
-@media (min-width: 769px) {
-    .f-item:hover {
-        flex: 3;
-    }
-}
-
+@media (min-width: 769px) { .f-item:hover { flex: 3; } }
 @media (max-width: 768px) {
-    .f-item:hover,
-    .f-item:focus,
-    .f-item:active {
-        flex: 2.5;
-    }
-
-    .f-default {
-        flex-direction: row;
-    }
+    .f-item:hover, .f-item:focus, .f-item:active { flex: 2.5; }
+    .f-default { flex-direction: row; }
 }
-
-.f-item.github:hover {
-    background-color: rgba(255,255,255,0.03);
-}
-
-.f-item.linkedin:hover {
-    background-color: rgba(10,102,194,0.08);
-    box-shadow: inset 0 0 80px rgba(10,102,194,0.1);
-}
-
-.f-item.email:hover {
-    background-color: rgba(234,67,53,0.08);
-    box-shadow: inset 0 0 80px rgba(234,67,53,0.1);
-}
-
-.f-item.whatsapp:hover {
-    background-color: rgba(37,211,102,0.08);
-    box-shadow: inset 0 0 80px rgba(37,211,102,0.1);
-}
-
-.f-item.insta:hover {
-    background-color: rgba(221,42,123,0.08);
-    box-shadow: inset 0 0 80px rgba(221,42,123,0.1);
-}
+.f-item.github:hover   { background-color: rgba(255,255,255,0.03); }
+.f-item.linkedin:hover { background-color: rgba(10,102,194,0.08);  box-shadow: inset 0 0 80px rgba(10,102,194,0.1); }
+.f-item.email:hover    { background-color: rgba(234,67,53,0.08);   box-shadow: inset 0 0 80px rgba(234,67,53,0.1); }
+.f-item.whatsapp:hover { background-color: rgba(37,211,102,0.08);  box-shadow: inset 0 0 80px rgba(37,211,102,0.1); }
+.f-item.insta:hover    { background-color: rgba(221,42,123,0.08);  box-shadow: inset 0 0 80px rgba(221,42,123,0.1); }
 
 /* ─── Landscape short phones ─── */
 @media (max-height: 480px) and (orientation: landscape) {
-    #hero {
-        min-height: auto;
-        padding-top: 4.5rem;
-        padding-bottom: 2rem;
-    }
-
-        #hero .massive-text {
-            font-size: clamp(1.75rem, 7vh, 3.5rem);
-        }
-
-    .linkdin-card {
-        margin-top: 1rem;
-    }
+    #hero { min-height: auto; padding-top: 4.5rem; padding-bottom: 2rem; }
+    #hero .massive-text { font-size: clamp(1.75rem, 7vh, 3.5rem); }
+    .linkdin-card { margin-top: 1rem; }
 }
 
 /* ─── Reduced motion ─── */
 @media (prefers-reduced-motion: reduce) {
-    .reveal {
-        transition: none;
-        opacity: 1;
-        transform: none;
-    }
-
-    .custom-loading-bar {
-        animation: none;
-    }
+    .reveal { transition: none; opacity: 1; transform: none; }
+    .custom-loading-bar { animation: none; }
 }
 
 /* ─── Contact notification bar ─── */
 .notification-active {
     top: 100px !important;
     opacity: 1 !important;
-}
-
-/* ==========================================================================
-   ADVANCED MOBILE SCROLL-HOVER BRUTALIST ALIGNMENT
-   ========================================================================== */
-
-/* Only apply these overrides on devices lacking a fine pointer (touch screens) */
-@media (pointer: coarse) {
-    
-    /* 1. Navigation Header & Footer Logo Active Glow States */
-    nav .logo span.outlined-text.has-hover,
-    footer .logo span.outlined-text.has-hover {
-        -webkit-text-stroke: 2px var(--primary) !important;
-        color: rgba(143, 245, 255, 0.15) !important;
-        text-shadow: 0 0 30px var(--primary), 0 0 10px var(--primary) !important;
-        opacity: 1 !important;
-    }
-
-    /* 2. Massive Content Headers (.massive-text .outlined-text) */
-    .massive-text .outlined-text.has-hover,
-    .outlined-text.has-hover {
-        -webkit-text-stroke: 2px var(--primary) !important;
-        color: rgba(143, 245, 255, 0.1) !important;
-        text-shadow: 0 0 45px var(--primary), 0 0 15px var(--primary) !important;
-    }
-
-    /* 3. Core Structural Glass Bento Layouts */
-    .liquid-card.has-hover {
-        border-color: var(--primary) !important;
-        transform: translateY(-6px) scale(1.015) !important;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 25px rgba(143,245,255,0.15) !important;
-    }
-    
-    /* Reveal inner ambient fluid matrix radial light */
-    .liquid-card.has-hover::before {
-        opacity: 1 !important;
-    }
-    
-    /* Smooth scale transitions for internal media icons */
-    .liquid-card.has-hover img,
-    .liquid-card.has-hover i {
-        transform: scale(1.1) !important;
-    }
-
-    /* 4. Project List Anchors & Payment Modules */
-    #projects-container a.has-hover h3,
-    #jazzcash-trigger.has-hover h3,
-    #alfalah-trigger.has-hover h3,
-    .crypto-copy-btn.has-hover span.font-black {
-        color: var(--primary) !important;
-        text-shadow: 0 0 15px rgba(143,245,255,0.4) !important;
-    }
-
-    /* Slide peripheral arrows and indicators smoothly into frame */
-    #projects-container a.has-hover div.translate-x-2,
-    #jazzcash-trigger.has-hover div.translate-x-2,
-    #alfalah-trigger.has-hover div.translate-x-2 {
-        transform: translateX(0) !important;
-        opacity: 1 !important;
-    }
 }
